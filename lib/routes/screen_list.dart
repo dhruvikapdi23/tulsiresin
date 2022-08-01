@@ -1,3 +1,13 @@
 export '../views/index.dart';
 export '../views/login/login.dart';
 export '../views/signup/signup.dart';
+export '../views/product_detail/product_detail.dart';
+export '../views/checkOut/checkOut.dart';
+export '../views/order_success/order_success.dart';
+export '../views/order_history/order_history.dart';
+export '../views/wishlist/wishlist.dart';
+export '../views/notification/notification.dart';
+export '../views/order_detail/order_detail.dart';
+export '../views/product/product.dart';
+export '../views/edit_profile/edit_profile.dart';
+export '../views/address_list/address_list.dart';

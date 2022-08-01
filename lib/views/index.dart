@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tulsiresin/views/dashboard/dashboard.dart';
 
 import '../controllers/common/app_controller.dart';
 import '../services/app_update_service.dart';
 import '../services/firebase/firebase_notification_service.dart';
-import '../views/home.dart';
 
 class Index extends StatefulWidget {
   const Index({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class _IndexState extends State<Index> {
 
   @override
   void initState() {
-    FirebaseNotificationService().setup();
+   // FirebaseNotificationService().setup();
     AppUpdateService().init();
 
     appCtrl.checkDeepLink();
@@ -28,6 +28,6 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeLayout();
+    return Dashboard();
   }
 }

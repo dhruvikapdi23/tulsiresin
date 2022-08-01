@@ -27,7 +27,7 @@ class SplashController extends GetxController {
   void onReady() async {
     positionAnimation = true;
     update();
-    await Future.delayed(Durations.slowest);
+    await Future.delayed(Durations.slower);
 
     setLanguage();
     checkLogin();
@@ -46,8 +46,8 @@ class SplashController extends GetxController {
   }
 
   void setLanguage() {
-    String? languageCode = getStorage(Session.languageCode);
-    String? countryCode = getStorage(Session.countryCode);
+    String? languageCode = appCtrl.getStorage.read(Session.languageCode);
+    String? countryCode = appCtrl.getStorage.read(Session.countryCode);
 
     if (languageCode != null && countryCode != null) {
       var locale = Locale(languageCode, countryCode);

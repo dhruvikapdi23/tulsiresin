@@ -1,18 +1,38 @@
 import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/controllers/login_controller.dart';
-import 'package:tulsiresin/widgets/common/common_divider.dart';
+import 'package:tulsiresin/views/login/widgets/common_divider.dart';
+import 'package:tulsiresin/views/login/widgets/social_icon.dart';
 import 'package:tulsiresin/widgets/common/custom_button.dart';
 import 'package:tulsiresin/widgets/common/email_text_box.dart';
 import 'package:tulsiresin/widgets/common/password_text_box.dart';
-import 'package:tulsiresin/widgets/common/social_icon.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen>with TickerProviderStateMixin {
   final appCtrl = Get.isRegistered<AppController>()
       ? Get.find<AppController>()
       : Get.put(AppController());
+  late AnimationController loginButtonController;
   final loginCtrl = Get.put(LoginController());
 
-  LoginScreen({Key? key}) : super(key: key);
+  @override
+  void initState() {
+    super.initState();
+
+
+    loginButtonController = AnimationController(
+      duration: const Duration(milliseconds: 3000),
+      vsync: this,
+    );
+
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +40,7 @@ class LoginScreen extends StatelessWidget {
       body: GetBuilder<LoginController>(builder: (_) {
         return SingleChildScrollView(
           child: Container(
-            color: appCtrl.appTheme.white,
+            color: appCtrl.appTheme.surface,
             height: MediaQuery.of(context).size.height,
             child: Form(
               key: loginCtrl.formKey,
@@ -44,11 +64,12 @@ class LoginScreen extends StatelessWidget {
                   CustomButton(
                     title: "LOG IN",
                     radius: 0,
-
                     onTap: () {
-                      if(loginCtrl.formKey.currentState!.validate()){
+                     /* if (loginCtrl.formKey.currentState!.validate()) {
                         loginCtrl.checkLogin();
-                      }
+                      }*/
+                      print('tap');
+                      loginCtrl.checkLogin();
                     },
                   ),
                   Space(0, 50),
@@ -89,7 +110,8 @@ class LoginScreen extends StatelessWidget {
                       const Text("Sign Up")
                           .textColor(appCtrl.appTheme.green.withOpacity(.6))
                           .fontWeight(FontWeight.w600)
-                          .fontSize(FontSizes.s16).gestures(onTap: ()=> Get.toNamed(routeName.signup)),
+                          .fontSize(FontSizes.s16)
+                          .gestures(onTap: () => Get.toNamed(routeName.signup)),
                     ],
                   )
                 ],
@@ -101,3 +123,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+

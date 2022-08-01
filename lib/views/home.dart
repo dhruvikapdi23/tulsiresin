@@ -62,7 +62,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                   CustomButton(
                     title: trans('yes_exit'),
                     width: Sizes.s120,
-                    style: AppCss.h3.textColor(appCtrl.appTheme.white),
+                    style: AppCss.h3.textColor(appCtrl.appTheme.surface),
                     padding: const EdgeInsets.symmetric(vertical: Insets.i8),
                     radius: AppRadius.r6,
                     onTap: () => SystemNavigator.pop(),

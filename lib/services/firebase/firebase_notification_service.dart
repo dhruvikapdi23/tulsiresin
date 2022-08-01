@@ -90,19 +90,19 @@ class FirebaseNotificationService {
       );*/
     }
 
-    var initializationSettingsAndroid = const AndroidInitializationSettings('@mipmap/ic_notification');
+  /*  var initializationSettingsAndroid = const AndroidInitializationSettings('@mipmap/ic_notification');
     final IOSInitializationSettings initializationSettingsIOS = IOSInitializationSettings(onDidReceiveLocalNotification: onDidReceiveLocalNotification);
     var initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
-
-    flutterLocalNotificationsPlugin.initialize(initializationSettings, onSelectNotification: (val) async {
+*/
+    /*flutterLocalNotificationsPlugin.initialize(initializationSettings, onSelectNotification: (val) async {
       if (val != null && val.isNotEmpty) {
         dynamic data = jsonDecode(val);
         _notificationNavigateToItemDetail(data);
       }
-    });
+    });*/
 
     //when app in foreground
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {

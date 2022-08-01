@@ -80,6 +80,12 @@ extension StyledText<T extends Text> on T {
         ),
       );
 
+  T textHeight(double textHeight) => copyWith(
+        style: (style ?? const TextStyle()).copyWith(
+          height: textHeight,
+        ),
+      );
+
   T fontSize(double size) => copyWith(
         style: (style ?? const TextStyle()).copyWith(
           fontSize: size,
@@ -148,6 +154,11 @@ extension StyledText<T extends Text> on T {
   T textColor(Color color) => copyWith(
         style: (style ?? const TextStyle()).copyWith(
           color: color,
+        ),
+      );
+  T overFlow(TextOverflow textOverflow) => copyWith(
+        style: (style ?? const TextStyle()).copyWith(
+          overflow: textOverflow,
         ),
       );
 

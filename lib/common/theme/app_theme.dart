@@ -26,11 +26,17 @@ class AppTheme {
   Color grey;
   Color darkGray;
   Color lightGray;
+  Color secondaryGray;
   Color borderGray;
   Color green;
+  Color red;
   Color white;
   Color black;
   Color grayPrimary;
+  Color graySecondary;
+  Color linear;
+  Color gray6;
+  Color statusColor;
 
   /// Default constructor
   AppTheme({
@@ -47,11 +53,17 @@ class AppTheme {
     required this.grey,
     required this.darkGray,
     required this.lightGray,
+    required this.secondaryGray,
     required this.borderGray,
     required this.green,
+    required this.red,
     required this.white,
     required this.black,
     required this.grayPrimary,
+    required this.graySecondary,
+    required this.linear,
+    required this.gray6,
+    required this.statusColor,
   });
 
   /// fromType factory constructor
@@ -60,7 +72,7 @@ class AppTheme {
       case ThemeType.light:
         return AppTheme(
           isDark: false,
-          txt: const Color(0xFF001928),
+          txt: const Color(0xFF1D1F22),
           primary: const Color(0xFF5ECE7B),
           secondary: const Color(0xFF6EBAE7),
           accentTxt: const Color(0xFF001928),
@@ -72,11 +84,18 @@ class AppTheme {
           grey: const Color(0xFFF1F2F3),
           darkGray: const Color(0xFF666666),
           lightGray: const Color(0xFFDFDFDF),
+          secondaryGray: const Color(0xFFBEBFC4),
           borderGray: const Color(0xFFE6E8EA),
           green: const Color(0xFF5CB85C),
           white: Colors.white,
           black: Colors.black,
+          red: Colors.red,
           grayPrimary: const Color(0xFFA3A5AD),
+          graySecondary: const Color(0xFFF9F9F9),
+          linear: const Color(0xFFF0F4F3),
+          gray6: const Color(0xFFF2F2F2),
+          statusColor: const Color(0xFFB7791D),
+
         );
 
       case ThemeType.dark:
@@ -95,18 +114,25 @@ class AppTheme {
           grey: const Color(0xFFF1F2F3),
           darkGray: const Color(0xFF999999),
           lightGray: const Color(0xFF999999),
+          secondaryGray: const Color(0xFFBEBFC4),
           borderGray: const Color(0xFF353C41),
           green: const Color(0xFF5CB85C),
           white: Colors.white,
-          black: Colors.black,
+          black: Colors.white,
+          red: Colors.red,
           grayPrimary: const Color(0xFFA3A5AD),
+          graySecondary: const Color(0xFFF9F9F9),
+          linear: const Color(0xFFF0F4F3),
+          gray6: const Color(0xFFF2F2F2),
+          statusColor: const Color(0xFFB7791D),
           //white: const Color(0xFF262F36),
         );
     }
   }
 
   ThemeData get themeData {
-    var t = ThemeData.from(
+    var t = ThemeData(
+      fontFamily: 'Raleway',
       textTheme: (isDark ? ThemeData.dark() : ThemeData.light()).textTheme,
       colorScheme: ColorScheme(
         brightness: isDark ? Brightness.dark : Brightness.light,
@@ -127,6 +153,7 @@ class AppTheme {
       ),
     );
     return t.copyWith(
+
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       checkboxTheme: CheckboxThemeData(
           shape: RoundedRectangleBorder(

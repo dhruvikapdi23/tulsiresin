@@ -9,6 +9,8 @@ export 'app_extensions.dart';
 export 'common/assets/index.dart';
 export 'common/constants/index.dart';
 export 'common/theme/index.dart';
+export 'common/array/index.dart';
+export '../../models/index.dart';
 //ctrl
 export 'controllers/common/app_controller.dart';
 //others
@@ -18,3 +20,4 @@ export 'routes/index.dart';
 export 'utilities/index.dart';
 //widget
 export 'widgets/common/app_component.dart';
+export 'package:tulsiresin/common/common_fonts.dart';

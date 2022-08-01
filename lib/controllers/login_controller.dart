@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:tulsiresin/config.dart';
 
-class LoginController extends GetxController{
+class LoginController extends GetxController {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   bool passwordVisible = true;
@@ -13,10 +13,8 @@ class LoginController extends GetxController{
     update();
   }
 
-  checkLogin(){
-    if (kDebugMode) {
-      print('done');
-
-    }
+  checkLogin() {
+    print('check');
+    Get.toNamed(routeName.dashboard);
   }
 }

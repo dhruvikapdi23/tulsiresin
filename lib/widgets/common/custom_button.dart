@@ -16,6 +16,7 @@ class CustomButton extends StatelessWidget {
   final GestureTapCallback? onTap;
   final TextStyle? style;
   final Color? color;
+  final Color? fontColor;
   final Widget? icon;
   final double? width;
   final Border? border;
@@ -29,6 +30,7 @@ class CustomButton extends StatelessWidget {
     this.onTap,
     this.style,
     this.color,
+    this.fontColor,
     this.icon,
     this.width,
     this.border,
@@ -37,44 +39,37 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(radius),
+    return InkWell(
+      onTap: onTap,
       child: Container(
-        color: color ?? appCtrl.appTheme.primary,
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: onTap,
-            child: Container(
-              padding: padding ?? const EdgeInsets.all(Insets.i20),
-              width: width ?? MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                border: border,
-                borderRadius: radius > 0 ? BorderRadius.circular(radius) : null,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+
+        padding: padding ?? const EdgeInsets.all(Insets.i20),
+        width: width ?? MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          border: border,
+          color: color ?? appCtrl.appTheme.primary,
+          borderRadius: radius > 0 ? BorderRadius.circular(radius) : null,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (icon != null)
+              Row(
                 children: [
-                  if (icon != null)
-                    Row(
-                      children: [
-                        icon ?? const HSpace(0),
-                        const HSpace(10),
-                      ],
-                    ),
-                  Expanded(
-                    flex: iconCenter == true ? 0 : 1,
-                    child: Text(
-                      title,
-                      style: style ?? AppCss.h3.textColor(Colors.white),
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
+                  icon ?? const HSpace(0),
+                  const HSpace(10),
                 ],
               ),
+            Expanded(
+              flex: iconCenter == true ? 0 : 1,
+              child: Text(
+                title,
+                style: style ?? AppCss.h3.textColor(fontColor ??Colors.white),
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

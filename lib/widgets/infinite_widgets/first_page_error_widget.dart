@@ -47,7 +47,7 @@ class FirstPageErrorWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: Insets.i30),
             ),
             onPressed: pagingController.retryLastFailedRequest,
-            child: Text(trans('retry'), style: AppCss.h3.copyWith(color: appCtrl.appTheme.white)),
+            child: Text(trans('retry'), style: AppCss.h3.copyWith(color: appCtrl.appTheme.surface)),
           ),
         ],
       ),

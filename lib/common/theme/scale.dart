@@ -35,12 +35,15 @@ class Insets {
   static const double i25 = 25 * scale;
   static const double i30 = 30 * scale;
   static const double i40 = 40 * scale;
+  static const double i50 = 50 * scale;
   static const double i55 = 55 * scale;
   static const double i60 = 60 * scale;
+  static const double i100 = 100 * scale;
 }
 
 class AppRadius {
   static const double scale = 1;
+  static const double r3 = 3 * scale;
   static const double r5 = 5 * scale;
   static const double r6 = 6 * scale;
   static const double r8 = 8 * scale;
@@ -50,6 +53,7 @@ class AppRadius {
   static const double r16 = 16 * scale;
   static const double r20 = 20 * scale;
   static const double r50 = 50 * scale;
+  static const double r300 = 300 * scale;
 }
 
 class FontSizes {
@@ -60,6 +64,7 @@ class FontSizes {
   static const double s16 = 16 * scale;
   static const double s18 = 18 * scale;
   static const double s20 = 20 * scale;
+  static const double s25 = 25 * scale;
 }
 
 class Sizes {
@@ -86,6 +91,7 @@ class Sizes {
   static const double s45 = 45;
   static const double s48 = 48;
   static const double s50 = 50;
+  static const double s55 = 55;
   static const double s60 = 60;
   static const double s65 = 65;
   static const double s75 = 75;
@@ -93,8 +99,11 @@ class Sizes {
   static const double s85 = 85;
   static const double s92 = 92;
   static const double s100 = 100;
+  static const double s105 = 105;
   static const double s110 = 110;
   static const double s120 = 120;
+  static const double s130 = 130;
+  static const double s140 = 140;
   static const double s150 = 150;
   static const double s160 = 160;
   static const double s180 = 180;
@@ -105,6 +114,9 @@ class Sizes {
   static const double s260 = 260;
   static const double s270 = 270;
   static const double s320 = 320;
+  static const double s350 = 350;
+  static const double s380 = 380;
+  static const double s400 = 400;
   static const double s450 = 450;
   static const double s460 = 460;
   static const double s500 = 500;

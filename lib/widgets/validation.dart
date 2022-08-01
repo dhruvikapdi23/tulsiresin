@@ -44,10 +44,66 @@ class Validation {
     }
   }
 
+  // Check  Name Validation
+  String? checkNameValidation(value) {
+    if (value.isEmpty) {
+      return "Name is Required";
+    }else{
+      return null;
+    }
+  }
+
   // Check Second Name Validation
   String? checkLastNameValidation(value) {
     if (value.isEmpty) {
       return "Last Name is Required";
+    }else{
+      return null;
+    }
+  }
+
+  // Check Country Validation
+  String? checkCountryValidation(value) {
+    if (value.isEmpty) {
+      return "Country is Required";
+    }else{
+      return null;
+    }
+  }
+
+  // Check StreetName Validation
+  String? checkStreetNameValidation(value) {
+    if (value.isEmpty) {
+      return "Street Name is Required";
+    }else{
+      return null;
+    }
+  }
+
+  // Check StateProvision Validation
+  String? checkStateProvisionValidation(value) {
+    if (value.isEmpty) {
+      return "State / Province is Required";
+    }else{
+      return null;
+    }
+  }
+
+  // Check ZipCode Validation
+  String? checkZipCodeValidation(value) {
+    if (value.isEmpty) {
+      return "Zip-code is Required";
+    }else{
+      return null;
+    }
+  }
+
+  // Check Phone Validation
+  String? checkPhoneValidation(value) {
+    if (value.isEmpty) {
+      return "Phone No. is Required";
+    }else if(value.length <= 10){
+      return "Enter valid Phone No.";
     }else{
       return null;
     }

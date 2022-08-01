@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:uni_links/uni_links.dart';
 
@@ -8,16 +9,23 @@ class AppController extends GetxController {
   AppTheme _appTheme = AppTheme.fromType(ThemeType.light);
   bool _isLoading = false;
 
+  bool isDark = false;
   AppTheme get appTheme => _appTheme;
   bool get isLoading => _isLoading;
+  String countryCode = "US";
+  String languageCode = "en";
 
   bool analyticCookies = true;
   bool marketingCookies = true;
   bool showCookiesSettings = false;
+  final getStorage = GetStorage();
 
   @override
   void onReady() {
     updateTheme(Get.isDarkMode ? AppTheme.fromType(ThemeType.dark) : AppTheme.fromType(ThemeType.light));
+    isDark = ThemeService().theme == ThemeType.light ? true : false;
+
+    update();
     super.onReady();
   }
 

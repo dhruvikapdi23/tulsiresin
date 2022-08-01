@@ -1,4 +1,4 @@
-import '../../config.dart';
+import '../../../config.dart';
 
 class CommonDivider extends StatelessWidget {
   final double? indent,endIndent;

@@ -14,6 +14,7 @@ class EmailTextBox extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       padding: const EdgeInsets.only(bottom: 10),
       hintText: "Your email *",
+      labelText: "Your email",
       inputBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: appCtrl.appTheme.lightGray,

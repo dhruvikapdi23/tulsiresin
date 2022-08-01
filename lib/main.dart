@@ -12,7 +12,7 @@ RemoteConfigService remoteConfigService = RemoteConfigService();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //Init
-  await FirebaseNotificationService.init();
+  //await FirebaseNotificationService.init();
   await GetStorage.init();
 
   //Remote config

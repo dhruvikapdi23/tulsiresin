@@ -21,6 +21,7 @@ class ThemeService {
 
   /// Switch theme and save to local storage
   void switchTheme() {
+    print(_loadThemeFromStorage());
     if (_loadThemeFromStorage()) {
       Get.changeThemeMode(ThemeMode.light);
       appCtrl.updateTheme(AppTheme.fromType(ThemeType.light));

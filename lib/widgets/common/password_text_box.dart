@@ -26,11 +26,12 @@ class PasswordTextBox extends StatelessWidget {
               style: TextStyle(
                   color: appCtrl.appTheme.grayPrimary,
                   decoration: TextDecoration.underline),
-            )
+            ).gestures(onTap: ()=> Get.toNamed(routeName.signup))
           : null,
       keyboardType: TextInputType.visiblePassword,
       padding: const EdgeInsets.only(bottom: 10),
-      hintText: "Password *",
+      hintText: "Password",
+      labelText: "Password",
       inputBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: appCtrl.appTheme.lightGray,

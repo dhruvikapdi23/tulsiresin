@@ -41,7 +41,7 @@ class _Page404State extends State<Page404> {
                     child: Text(
                       'CARE ROCKETS',
                       maxLines: 2,
-                      style: AppCss.h1.copyWith(color: appCtrl.appTheme.white),
+                      style: AppCss.h1.copyWith(color: appCtrl.appTheme.surface),
                     ),
                   ),
                 ],

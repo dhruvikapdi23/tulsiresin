@@ -1,4 +1,4 @@
-import '../../config.dart';
+import '../../../config.dart';
 
 class SocialIconLayout extends StatelessWidget {
   final String? icon;
