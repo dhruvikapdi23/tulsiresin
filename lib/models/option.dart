@@ -1,7 +1,6 @@
-
 class Options {
   int? productId;
-  int? id;
+  String? id;
   String? name;
   int? position;
   List<String>? values;

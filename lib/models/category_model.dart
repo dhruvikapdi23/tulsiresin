@@ -1,5 +1,5 @@
 class CategoryModel {
-  int? id;
+  String? id;
   String? handle;
   String? title;
   String? updatedAt;
@@ -12,19 +12,7 @@ class CategoryModel {
   String? publishedScope;
   String? adminGraphqlApiId;
 
-  CategoryModel(
-      {this.id,
-        this.handle,
-        this.title,
-        this.updatedAt,
-        this.bodyHtml,
-        this.publishedAt,
-        this.sortOrder,
-        this.templateSuffix,
-        this.productsCount,
-        this.collectionType,
-        this.publishedScope,
-        this.adminGraphqlApiId});
+  CategoryModel({this.id, this.handle, this.title, this.updatedAt, this.bodyHtml, this.publishedAt, this.sortOrder, this.templateSuffix, this.productsCount, this.collectionType, this.publishedScope, this.adminGraphqlApiId});
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

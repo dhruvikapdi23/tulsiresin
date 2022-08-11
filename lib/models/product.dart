@@ -1,7 +1,7 @@
 import '../config.dart';
 
 class ProductModel {
-  int? id;
+  String? id;
   int? quantity;
   String? title;
   String? bodyHtml;
@@ -21,26 +21,7 @@ class ProductModel {
   List<Images>? images;
   Images? image;
 
-  ProductModel(
-      {this.id,
-        this.title,
-        this.quantity,
-        this.bodyHtml,
-        this.vendor,
-        this.productType,
-        this.createdAt,
-        this.handle,
-        this.updatedAt,
-        this.publishedAt,
-        this.templateSuffix,
-        this.status,
-        this.publishedScope,
-        this.tags,
-        this.adminGraphqlApiId,
-        this.variants,
-        this.options,
-        this.images,
-        this.image});
+  ProductModel({this.id, this.title, this.quantity, this.bodyHtml, this.vendor, this.productType, this.createdAt, this.handle, this.updatedAt, this.publishedAt, this.templateSuffix, this.status, this.publishedScope, this.tags, this.adminGraphqlApiId, this.variants, this.options, this.images, this.image});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -58,9 +39,9 @@ class ProductModel {
     publishedScope = json['published_scope'];
     tags = json['tags'];
     adminGraphqlApiId = json['admin_graphql_api_id'];
-    if (json['variants'] != null) {
+    if (json['variants']['edges'] != null) {
       variants = <Variants>[];
-      json['variants'].forEach((v) {
+      json['variants']['edges'].forEach((v) {
         variants!.add(Variants.fromJson(v));
       });
     }
@@ -70,10 +51,10 @@ class ProductModel {
         options!.add(Options.fromJson(v));
       });
     }
-    if (json['images'] != null) {
+    if (json['images']['edges'] != null) {
       images = <Images>[];
-      json['images'].forEach((v) {
-        images!.add(Images.fromJson(v));
+      json['images']['edges'].forEach((v) {
+        images!.add(Images.fromJson(v['node']));
       });
     }
     image = json['image'] != null ? Images.fromJson(json['image']) : null;
@@ -111,5 +92,3 @@ class ProductModel {
     return data;
   }
 }
-
-

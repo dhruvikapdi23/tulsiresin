@@ -11,18 +11,7 @@ class Images {
   List<int>? variantIds;
   String? adminGraphqlApiId;
 
-  Images(
-      {this.productId,
-        this.id,
-        this.position,
-        this.createdAt,
-        this.updatedAt,
-        this.alt,
-        this.width,
-        this.height,
-        this.src,
-        this.variantIds,
-        this.adminGraphqlApiId});
+  Images({this.productId, this.id, this.position, this.createdAt, this.updatedAt, this.alt, this.width, this.height, this.src, this.variantIds, this.adminGraphqlApiId});
 
   Images.fromJson(Map<String, dynamic> json) {
     productId = json['product_id'];
@@ -34,7 +23,7 @@ class Images {
     width = json['width'];
     height = json['height'];
     src = json['src'];
-    variantIds = json['variant_ids'].cast<int>();
+    variantIds = json['variant_ids'] != null ? json['variant_ids']!.cast<int>() : null;
     adminGraphqlApiId = json['admin_graphql_api_id'];
   }
 
