@@ -27,15 +27,15 @@ class YouMayAlsoLike extends StatelessWidget {
                     return RecentViewListCard(
                       data: e.value,
                       index: e.key,
-                      onTap: ()=> Get.toNamed(routeName.productDetail),
+
                       heartIconTap: (){
-                       /* e.value.isFav = !e.value.isFav!;
-                        productDetail.update();*/
+                        /*e.value.isFav = !e.value.isFav!;
+                            homeCtrl.update();*/
                       },
                     );
                   })
                 ],
-              ),
+              ).marginOnly(left: Insets.i20),
             ),
 
           ],

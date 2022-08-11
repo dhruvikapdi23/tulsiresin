@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/controllers/dashboard_controller.dart';
 import 'package:tulsiresin/controllers/product_detail_controller.dart';
@@ -84,10 +85,11 @@ class _ProductDetailState extends State<ProductDetail> {
                       product: productCtrl.product,
                       variantIndex: productCtrl.variantIndex,
                     ),
-                  if (productCtrl.product != null)
+                  if (productCtrl.product != null && productCtrl.product!.variants!.length >1)
                     VariantsLayout(
                         options: productCtrl.product!.options,
                         optionValue: productCtrl.optionValue),
+                  if (productCtrl.product != null && productCtrl.product!.variants!.length >1)
                   Space(0, 20),
                   Row(
                     children: [
@@ -254,9 +256,11 @@ class _ProductDetailState extends State<ProductDetail> {
                             .textColor(appCtrl.appTheme.black),
                         // contents
                         children: [
-                          Text(productCtrl.product!.bodyHtml ?? "")
+                          HtmlWidget( productCtrl.product!.bodyHtml ?? "",)
+
+                         /* Text(productCtrl.product!.bodyHtml ?? "")
                               .overFlow(TextOverflow.clip)
-                              .letterSpacing(.5),
+                              .letterSpacing(.5),*/
                           // This button is used to remove this item
                         ],
                       ),
@@ -278,6 +282,7 @@ class _ProductDetailState extends State<ProductDetail> {
                       value: productCtrl.product!.handle!,
                     ),
                   Space(0, 20),
+
                   if (productCtrl.product != null) const YouMayAlsoLike()
                 ],
               ).marginOnly(bottom: Insets.i50),

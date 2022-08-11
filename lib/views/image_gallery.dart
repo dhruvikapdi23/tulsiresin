@@ -106,7 +106,7 @@ class _PicSwiperState extends State<PicSwiper>
                   itemBuilder: (BuildContext context, int index) {
                     print(widget.pics[index]);
                     var item = widget.pics[index].picUrl;
-                    Widget image = ExtendedImage.asset(
+                    Widget image = ExtendedImage.network(
                       item,
                       fit: BoxFit.contain,
                       enableSlideOutPage: true,

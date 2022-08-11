@@ -1,13 +1,16 @@
+import 'package:tulsiresin/routes/screen_list.dart';
+
 import '../../../config.dart';
+import '../../../models/product.dart';
 
 class RecentSearchCard extends StatelessWidget {
-  final RecentSearchModel? recentSearchModel;
+  final ProductModel? recentSearchModel;
   const RecentSearchCard({Key? key,this.recentSearchModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>Get.toNamed(routeName.productDetail),
+      onTap: ()=>Get.to(const ProductDetail(),arguments: recentSearchModel, preventDuplicates: false),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Column(
@@ -24,17 +27,11 @@ class RecentSearchCard extends StatelessWidget {
                             BorderRadius.circular(AppRadius.r50)),
                         height: Sizes.s55,
                         width: Sizes.s55,
-                        child: recentSearchModel!.image!.contains('svg')
-                            ? SvgPicture.asset(
-                          recentSearchModel!.image!,
-                          fit: BoxFit.contain,
-                          height: Sizes.s25,
-                        ).paddingSymmetric(horizontal: Insets.i15)
-                            : ClipRRect(
+                        child:  ClipRRect(
                           borderRadius:
                           BorderRadius.circular(AppRadius.r50),
-                          child: Image.asset(
-                            recentSearchModel!.image!,
+                          child: Image.network(
+                            recentSearchModel!.image!.src.toString(),
                             height: Sizes.s60,
                             alignment: Alignment.topCenter,
                             width: Sizes.s65,

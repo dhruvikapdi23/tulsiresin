@@ -110,7 +110,7 @@ class OrderDetail extends StatelessWidget {
                   ),
                 ),
                 Space(0, 30),
-                Row(
+               /* Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                      Text(CommonFonts().status)
@@ -135,7 +135,7 @@ class OrderDetail extends StatelessWidget {
                     progressColor: appCtrl.appTheme.statusColor,
                   ),
                 ),
-                Space(0, 30),
+                Space(0, 30),*/
                  Text(CommonFonts().shippingAddress)
                     .fontWeight(FontWeight.bold)
                     .fontSize(FontSizes.s18)
@@ -159,8 +159,8 @@ class OrderDetail extends StatelessWidget {
                     .fontSize(FontSizes.s14)
                     .textColor(appCtrl.appTheme.black),
                 Space(0, 30),
-                CustomButton(title: CommonFonts().refundRequest,radius: 0,),
-                Space(0, 30),
+               /* CustomButton(title: CommonFonts().refundRequest,radius: 0,),
+                Space(0, 30),*/
               ],
             ).marginSymmetric(horizontal: Insets.i15,vertical: Insets.i10),
           ),

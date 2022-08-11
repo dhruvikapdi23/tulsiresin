@@ -17,7 +17,7 @@ class BannerList extends StatelessWidget {
       itemCount: bannerList.length,
       itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
         return InkWell(
-          onTap: ()=> Get.toNamed(routeName.productDetail),
+          onTap: ()=> Get.toNamed(routeName.product),
           child: Stack(
             children: <Widget>[
               Container(

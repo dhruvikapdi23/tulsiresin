@@ -39,6 +39,7 @@ class Cart extends StatelessWidget {
                     return CartListCard(
                       product: e.value,
                       quantity: "1",
+                      optionLength: e.value.options!.length,
                       minusTap: (){
                         int qunatity = e.value.quantity!;
                         if(qunatity == 1){

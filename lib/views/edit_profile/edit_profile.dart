@@ -27,15 +27,23 @@ class EditProfile extends StatelessWidget {
               Stack(
                 alignment: Alignment.bottomRight,
                 children: [
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(AppRadius.r50),
-                      child: Image.asset(
-                        imageAssets.user,
-                        height: Sizes.s100,
-                        width: Sizes.s105,
-                        alignment: Alignment.centerLeft,
-                        fit: BoxFit.cover,
-                      )),
+                  InkWell(
+                    onTap: ()=> editProfileCtrl.openSelector(context),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(AppRadius.r50),
+                        child: editProfileCtrl.selectedFile != null ?  Image.file(
+                          editProfileCtrl.selectedFile!,
+                          fit: BoxFit.cover,
+                          height: Sizes.s100,
+                          width: Sizes.s105,
+                        ): Image.asset(
+                          imageAssets.user,
+                          height: Sizes.s100,
+                          width: Sizes.s105,
+                          alignment: Alignment.centerLeft,
+                          fit: BoxFit.cover,
+                        )),
+                  ),
                   Positioned(
                       right: 10,
                       child: Container(

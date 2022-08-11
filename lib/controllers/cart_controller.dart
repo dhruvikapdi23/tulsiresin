@@ -3,7 +3,7 @@ import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/models/product.dart';
 
 class CartController extends GetxController{
-  List<Product> cartList =[];
+  List<ProductModel> cartList =[];
 
   int quantity =0;
 

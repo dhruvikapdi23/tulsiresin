@@ -1,3 +1,4 @@
+import 'package:tulsiresin/common/array/product.dart';
 import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/controllers/dashboard_controller.dart';
 import 'package:tulsiresin/controllers/product_controller.dart';
@@ -45,13 +46,13 @@ class Product extends StatelessWidget {
                   topLeft: Radius.circular(AppRadius.r20))),
           child: GridView.builder(
             shrinkWrap: true,
-            itemCount: recentViewList.length,
+            itemCount: geRecentProducts.length,
             itemBuilder: (context, index) {
               return RecentSearchProduct(
-                productViewModel: recentViewList[index],
+                productViewModel: geRecentProducts[index],
                 onTap: () {
-                  recentViewList[index].isFav = !recentViewList[index].isFav!;
-                  productCtrl.update();
+                  /*recentViewList[index].isFav = !recentViewList[index].isFav!;
+                  productCtrl.update();*/
                 },
               );
             },

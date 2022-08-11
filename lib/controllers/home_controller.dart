@@ -1,14 +1,16 @@
+import 'package:tulsiresin/common/array/product.dart';
 import 'package:tulsiresin/config.dart';
+import 'package:tulsiresin/models/product.dart';
 
 class HomeController extends GetxController {
-  List<ProductViewModel> recentView = [];
-  List<ProductViewModel> womenCollection = [];
+  List<ProductModel> recentView = [];
+  List<ProductModel> womenCollection = [];
 
   @override
   void onReady() {
     // TODO: implement onReady
-    recentView = recentViewList;
-    womenCollection = womenCollectionList;
+    recentView = geRecentProducts;
+    womenCollection = geRecentProducts;
     update();
     super.onReady();
   }

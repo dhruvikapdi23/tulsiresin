@@ -1,4 +1,4 @@
-import 'package:tulsiresin/common/array/recent_search.dart';
+import 'package:tulsiresin/common/array/product.dart';
 import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/controllers/dashboard_controller.dart';
 import 'package:tulsiresin/controllers/search_controller.dart';
@@ -68,10 +68,13 @@ class Search extends StatelessWidget {
               ),
               if (searchCtrl.productList.isEmpty &&
                   searchCtrl.txtSearch.text.isEmpty)
-                ...recentSearchList.asMap().entries.map((e) {
+                ...geRecentProducts.asMap().entries.map((e) {
                   return RecentSearchCard(
                     recentSearchModel: e.value,
-                  ).gestures(onTap: () => Get.toNamed(routeName.productDetail));
+                  ).gestures(onTap: () {
+                    print(e.value);
+                    /*Get.toNamed(routeName.productDetail,arguments: e.value);*/
+                  });
                 }).toList(),
               if (searchCtrl.productList.isNotEmpty)
                 GridView.builder(
@@ -82,8 +85,8 @@ class Search extends StatelessWidget {
                     return RecentSearchProduct(
                       productViewModel: searchCtrl.productList[index],
                       onTap: (){
-                        searchCtrl.productList[index].isFav = !searchCtrl.productList[index].isFav!;
-                        searchCtrl.update();
+                       /* searchCtrl.productList[index].isFav = !searchCtrl.productList[index].isFav!;
+                        searchCtrl.update();*/
                       },
                     );
                   },

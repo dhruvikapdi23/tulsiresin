@@ -16,13 +16,10 @@ class LanguageScreen extends StatelessWidget {
             elevation: 0,
           ),
           body: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               ...languageList.asMap().entries.map((e) {
-                return Row(
-                  children: [
-                    Text(e.value['title']!.tr).fontSize(FontSizes.s18)
-                  ],
-                ).marginSymmetric(horizontal: Insets.i15, vertical: Insets.i10).gestures(onTap: (){
+                return Text(e.value['title']!.tr).fontSize(FontSizes.s18).marginSymmetric(horizontal: Insets.i15, vertical: Insets.i10).gestures(onTap: (){
                   if (e.value['title'] == "English" || e.value['title'] == "अंग्रेज़ी") {
 
                     var locale = const Locale("en", 'US');

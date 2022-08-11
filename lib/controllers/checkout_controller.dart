@@ -12,7 +12,7 @@ class CheckoutController extends GetxController {
 
   bool isInfo = false;
   bool isCopyAddress = false;
-  List<Product> cartList = [];
+  List<ProductModel> cartList = [];
   String? value;
   var paymentMethod = [
     {
@@ -42,7 +42,7 @@ class CheckoutController extends GetxController {
   @override
   void onReady() {
     // TODO: implement onReady
-    cartList = productList;
+
     update();
     super.onReady();
   }

@@ -23,7 +23,7 @@ class CategoryController extends GetxController{
   @override
   void onReady() {
     // TODO: implement onReady
-    categoryListData = category;
+    categoryListData = getCategories;
     update();
     super.onReady();
   }

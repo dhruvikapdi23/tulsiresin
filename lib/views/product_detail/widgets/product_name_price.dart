@@ -4,7 +4,7 @@ import 'package:tulsiresin/models/product.dart';
 import '../../../config.dart';
 
 class ProductNamePrice extends StatelessWidget {
-  final Product? product;
+  final ProductModel? product;
   final int? variantIndex;
   const ProductNamePrice({Key? key,this.product,this.variantIndex}) : super(key: key);
 

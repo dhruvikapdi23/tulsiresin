@@ -1,3 +1,4 @@
+import 'package:tulsiresin/common/array/product.dart';
 import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/controllers/checkout_controller.dart';
 import 'package:tulsiresin/views/cart/widgets/cart_list_card.dart';
@@ -35,9 +36,12 @@ class ReviewLayout extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...checkoutCtrl.cartList.asMap().entries.map((e) {
+                ...geReviewProducts.asMap().entries.map((e) {
+                  print(e.value.options!.length);
                   return CartListCard(
                     product: e.value,
+                    quantity: "0",
+                    optionLength: e.value.options!.length,
                   );
                 }).toList(),
                  const PriceLayout(isBgColor: false,),

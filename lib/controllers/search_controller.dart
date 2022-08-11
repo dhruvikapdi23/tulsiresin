@@ -1,18 +1,20 @@
 
+import 'package:tulsiresin/common/array/product.dart';
 import 'package:tulsiresin/config.dart';
+import 'package:tulsiresin/models/product.dart';
 
 class SearchController extends GetxController {
   TextEditingController txtSearch = TextEditingController();
   bool isBack= false;
-  List<ProductViewModel> productList = [];
+  List<ProductModel> productList = [];
 
   searchList(val) {
     if(val.isEmpty){
       productList = [];
     }else {
-      for (var i = 0; i < recentViewList.length; i++) {
-        if (recentViewList[i].name!.contains(val)) {
-          productList.add(recentViewList[i]);
+      for (var i = 0; i < getProducts.length; i++) {
+        if (getProducts[i].title!.contains(val)) {
+          productList.add(getProducts[i]);
         }
       }
 

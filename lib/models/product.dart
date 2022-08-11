@@ -1,6 +1,6 @@
 import '../config.dart';
 
-class Product {
+class ProductModel {
   int? id;
   int? quantity;
   String? title;
@@ -21,7 +21,7 @@ class Product {
   List<Images>? images;
   Images? image;
 
-  Product(
+  ProductModel(
       {this.id,
         this.title,
         this.quantity,
@@ -42,7 +42,7 @@ class Product {
         this.images,
         this.image});
 
-  Product.fromJson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     quantity = json['quantity'];
