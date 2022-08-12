@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CommonTitle(title: collection['name'] ?? ''),
+                    CommonTitle(title: collection['name'] ?? '', categoryId: collection['category'] ?? ''),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -93,69 +93,12 @@ class Home extends StatelessWidget {
                               return const CircularProgressIndicator();
                             },
                           ),
-                          /*...geRecentProducts.asMap().entries.map((e) {
-                            return RecentViewListCard(
-                              data: e.value,
-                              index: e.key,
-                              onTap: () => Get.toNamed(routeName.productDetail, arguments: e.value),
-                              heartIconTap: () {
-                                */ /*e.value.isFav = !e.value.isFav!;
-                            homeCtrl.update();*/ /*
-                              },
-                            );
-                          })*/
                         ],
                       ).marginOnly(left: Insets.i20),
                     ),
                   ],
                 );
               }).toList(),
-
-              //recent View
-              /*CommonTitle(
-                title: CommonFonts().recentView,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...geRecentProducts.asMap().entries.map((e) {
-                      return RecentViewListCard(
-                        data: e.value,
-                        index: e.key,
-                        onTap: () => Get.toNamed(routeName.productDetail, arguments: e.value),
-                        heartIconTap: () {
-                          */ /*e.value.isFav = !e.value.isFav!;
-                            homeCtrl.update();*/ /*
-                        },
-                      );
-                    })
-                  ],
-                ).marginOnly(left: Insets.i20),
-              ),*/
-
-              //recent View
-              /*CommonTitle(
-                title: CommonFonts().womenCollection,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...geRecentProducts1.asMap().entries.map((e) {
-                      return RecentViewListCard(
-                        data: e.value,
-                        index: e.key,
-                        onTap: () => Get.toNamed(routeName.productDetail, arguments: e.value),
-                        heartIconTap: () {
-                          */ /* e.value.isFav = !e.value.isFav!;
-                            homeCtrl.update();*/ /*
-                        },
-                      );
-                    })
-                  ],
-                ).marginOnly(left: Insets.i20),
-              ),*/
             ],
           ).marginOnly(bottom: Insets.i50),
         ),

@@ -60,7 +60,7 @@ class ShopifyService {
         var category = item['node'];
 
         list.add(CategoryModel.fromJson(category));
-        //printLog("::: category : $category");
+        printLog("::: category : $category");
       }
 
       if (result.data?['shop']?['collections']?['pageInfo']?['hasNextPage'] ?? false) {
