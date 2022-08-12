@@ -2,6 +2,8 @@ import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/controllers/product_detail_controller.dart';
 import 'package:tulsiresin/views/product_detail/widgets/variants_list.dart';
 
+import '../../../models/option.dart';
+
 class VariantsLayout extends StatelessWidget {
   final List<Options>? options;
   final String? optionValue;

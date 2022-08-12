@@ -10,7 +10,6 @@ export 'common/assets/index.dart';
 export 'common/constants/index.dart';
 export 'common/theme/index.dart';
 export 'common/array/index.dart';
-export '../../models/index.dart';
 //ctrl
 export 'controllers/common/app_controller.dart';
 //others

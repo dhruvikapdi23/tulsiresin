@@ -23,7 +23,7 @@ class Product extends StatelessWidget {
             Icons.arrow_back,
             color: appCtrl.appTheme.white,
           ).gestures(onTap: () => Get.back()),
-          title: const Text('Dress').textColor(appCtrl.appTheme.white),
+          title:  Text(productCtrl.categoryName ).textColor(appCtrl.appTheme.white),
           actions: [
             GetBuilder<DashboardController>(builder: (dashCtrl) {
               return SvgPicture.asset(
@@ -56,10 +56,13 @@ class Product extends StatelessWidget {
                 childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 1),
               ),
               builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                itemBuilder: (context, item, index) => RecentSearchProduct(
-                  productViewModel: item,
-                  onTap: () {},
-                ),
+                itemBuilder: (context, item, index) {
+                  print(item);
+                  return  RecentSearchProduct(
+                    productViewModel: item,
+                    onTap: () {},
+                  );
+                },
                 noItemsFoundIndicatorBuilder: (_) => NoDataWidget(),
                 firstPageErrorIndicatorBuilder: (_) => FirstPageErrorWidget(pagingController: productCtrl.pagingController),
                 newPageErrorIndicatorBuilder: (_) => NextPageErrorWidget(pagingController: productCtrl.pagingController),

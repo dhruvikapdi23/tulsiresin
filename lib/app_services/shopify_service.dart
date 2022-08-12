@@ -162,7 +162,7 @@ class ShopifyService {
         }
 
         //printLog(":::: Item Data : ${result.data!['node']['products']['edges']}");
-
+        printLog("::: dhruvi : ${result.data!['node']['products']['edges']}");
         for (var item in result.data!['node']['products']['edges']) {
           var product = item['node'];
           product['categoryId'] = categoryId;
@@ -172,7 +172,7 @@ class ShopifyService {
             continue;
           }
 
-          //printLog("::: product : ${jsonEncode(product)}");
+          printLog("::: cardd : ${product['variants']['edges'][0]['node']['priceV2']}");
 
           list.add(ProductModel.fromJson(product));
         }

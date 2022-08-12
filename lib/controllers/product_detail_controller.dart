@@ -3,6 +3,8 @@ import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/models/product.dart';
 import 'package:tulsiresin/views/image_gallery.dart';
 
+import '../models/index.dart';
+
 class ProductDetailController extends GetxController {
   ProductModel? product;
   int currentPage = 0;
@@ -17,7 +19,7 @@ class ProductDetailController extends GetxController {
     // TODO: implement onReady
     txtQuantity.text = "1";
     product = Get.arguments;
-    print(product);
+
     if (product != null) optionValue = product!.options![0].values![0];
     update();
     super.onReady();

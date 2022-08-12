@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CommonTitle(title: collection['name'] ?? '', categoryId: collection['category'] ?? ''),
+                    CommonTitle(title: collection['name'] ?? '', category: collection ?? ''),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -79,6 +79,7 @@ class Home extends StatelessWidget {
                                     scrollDirection: Axis.horizontal,
                                     child: Row(children: [
                                       ...data.asMap().entries.map((e) {
+
                                         return RecentViewListCard(
                                           data: e.value,
                                           index: e.key,

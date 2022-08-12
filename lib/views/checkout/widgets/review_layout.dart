@@ -37,7 +37,7 @@ class ReviewLayout extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ...geReviewProducts.asMap().entries.map((e) {
-                  print(e.value.options!.length);
+
                   return CartListCard(
                     product: e.value,
                     quantity: "0",

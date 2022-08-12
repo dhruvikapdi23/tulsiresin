@@ -16,6 +16,7 @@ class RecentViewListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+print('var : ${data!.variants![0].node!}');
     return InkWell(
       onTap:  ()=> Get.to(const ProductDetail(),arguments: data, preventDuplicates: false),
       child: Column(
@@ -54,7 +55,8 @@ class RecentViewListCard extends StatelessWidget {
           Space(0, Sizes.s10),
           Row(
             children: [
-              Text('\$ ${data!.variants![0].price.toString()}')
+
+              Text('\$ ${data!.variants![0].node!.priceV2!.amount.toString()}')
                   .textColor(appCtrl.appTheme.black)
                   .fontSize(FontSizes.s14),
               Space(10, 0),

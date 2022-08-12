@@ -1,4 +1,5 @@
 import '../../config.dart';
+import '../../models/index.dart';
 
 var bannerList = <BannerModel>[
   BannerModel(

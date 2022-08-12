@@ -265,22 +265,22 @@ class _ProductDetailState extends State<ProductDetail> {
                         ],
                       ),
                     ),
-                  if (productCtrl.product != null)
+                  /*if (productCtrl.product != null)
                     CommonDetail(
                       title: CommonFonts().productCode,
                       value: productCtrl
                           .product!.variants![productCtrl.variantIndex].sku!,
-                    ),
-                  if (productCtrl.product != null)
+                    ),*/
+                  /*if (productCtrl.product != null)
                     CommonDetail(
                       title: CommonFonts().category,
                       value: productCtrl.product!.productType!,
-                    ),
-                  if (productCtrl.product != null)
+                    ),*/
+                /*  if (productCtrl.product != null)
                     CommonDetail(
                       title: CommonFonts().material,
                       value: productCtrl.product!.handle!,
-                    ),
+                    ),*/
                   Space(0, 20),
 
                   if (productCtrl.product != null) const YouMayAlsoLike()

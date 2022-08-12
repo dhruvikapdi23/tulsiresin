@@ -27,6 +27,7 @@ class Variants {
   int? oldInventoryQuantity;
   bool? requiresShipping;
   String? adminGraphqlApiId;
+  Node? node;
 
   Variants(
       {this.productId,
@@ -56,7 +57,7 @@ class Variants {
       this.inventoryQuantity,
       this.oldInventoryQuantity,
       this.requiresShipping,
-      this.adminGraphqlApiId});
+      this.adminGraphqlApiId,this.node});
 
   Variants.fromJson(Map<String, dynamic> json) {
     productId = json['product_id'];
@@ -87,6 +88,8 @@ class Variants {
     oldInventoryQuantity = json['old_inventory_quantity'];
     requiresShipping = json['requires_shipping'];
     adminGraphqlApiId = json['admin_graphql_api_id'];
+    node =
+    json['node'] != null ?  Node.fromJson(json['node']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -119,6 +122,154 @@ class Variants {
     data['old_inventory_quantity'] = oldInventoryQuantity;
     data['requires_shipping'] = requiresShipping;
     data['admin_graphql_api_id'] = adminGraphqlApiId;
+    if (node != null) {
+      data['node'] = node!.toJson();
+    }
+    return data;
+  }
+}
+
+class PriceV2 {
+  String? sTypename;
+  String? amount;
+  String? currencyCode;
+
+  PriceV2({this.sTypename, this.amount, this.currencyCode});
+
+  PriceV2.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
+    amount = json['amount'];
+    currencyCode = json['currencyCode'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['__typename'] = sTypename;
+    data['amount'] = amount;
+    data['currencyCode'] = currencyCode;
+    return data;
+  }
+}
+class PriceModel {
+  String? sTypename;
+  Node? node;
+
+  PriceModel({this.sTypename, this.node});
+
+  PriceModel.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
+    node = json['node'] != null ? Node.fromJson(json['node']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['__typename'] = sTypename;
+    if (node != null) {
+      data['node'] = node!.toJson();
+    }
+    return data;
+  }
+}
+
+class Node {
+  String? sTypename;
+  String? id;
+  String? title;
+  bool? availableForSale;
+  int? quantityAvailable;
+  List<SelectedOptions>? selectedOptions;
+  Image? image;
+  PriceV2? priceV2;
+  Null? compareAtPriceV2;
+
+  Node(
+      {this.sTypename,
+        this.id,
+        this.title,
+        this.availableForSale,
+        this.quantityAvailable,
+        this.selectedOptions,
+        this.image,
+        this.priceV2,
+        this.compareAtPriceV2});
+
+  Node.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
+    id = json['id'];
+    title = json['title'];
+    availableForSale = json['availableForSale'];
+    quantityAvailable = json['quantityAvailable'];
+    if (json['selectedOptions'] != null) {
+      selectedOptions = <SelectedOptions>[];
+      json['selectedOptions'].forEach((v) {
+        selectedOptions!.add(SelectedOptions.fromJson(v));
+      });
+    }
+    image = json['image'] != null ? Image.fromJson(json['image']) : null;
+    priceV2 =
+    json['priceV2'] != null ? PriceV2.fromJson(json['priceV2']) : null;
+    compareAtPriceV2 = json['compareAtPriceV2'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['__typename'] = sTypename;
+    data['id'] = id;
+    data['title'] = title;
+    data['availableForSale'] = availableForSale;
+    data['quantityAvailable'] = quantityAvailable;
+    if (selectedOptions != null) {
+      data['selectedOptions'] =
+          selectedOptions!.map((v) => v.toJson()).toList();
+    }
+    if (image != null) {
+      data['image'] = image!.toJson();
+    }
+    if (priceV2 != null) {
+      data['priceV2'] = priceV2!.toJson();
+    }
+    data['compareAtPriceV2'] = compareAtPriceV2;
+    return data;
+  }
+}
+
+class SelectedOptions {
+  String? sTypename;
+  String? name;
+  String? value;
+
+  SelectedOptions({this.sTypename, this.name, this.value});
+
+  SelectedOptions.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
+    name = json['name'];
+    value = json['value'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['__typename'] = sTypename;
+    data['name'] = name;
+    data['value'] = value;
+    return data;
+  }
+}
+
+class Image {
+  String? sTypename;
+  String? src;
+
+  Image({this.sTypename, this.src});
+
+  Image.fromJson(Map<String, dynamic> json) {
+    sTypename = json['__typename'];
+    src = json['src'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['__typename'] = sTypename;
+    data['src'] = src;
     return data;
   }
 }

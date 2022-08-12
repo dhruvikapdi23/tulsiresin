@@ -1,3 +1,6 @@
+import 'package:tulsiresin/models/index.dart';
+import 'package:tulsiresin/models/variants.dart';
+
 import '../config.dart';
 
 class ProductModel {
@@ -44,6 +47,8 @@ class ProductModel {
       json['variants']['edges'].forEach((v) {
         variants!.add(Variants.fromJson(v));
       });
+    }else{
+
     }
     if (json['options'] != null) {
       options = <Options>[];

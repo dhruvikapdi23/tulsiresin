@@ -2,8 +2,8 @@ import '../../../config.dart';
 
 class CommonTitle extends StatelessWidget {
   final String? title;
-  final String? categoryId;
-  const CommonTitle({Key? key, this.title, this.categoryId}) : super(key: key);
+  final dynamic category;
+  const CommonTitle({Key? key, this.title, this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class CommonTitle extends StatelessWidget {
         Text(CommonFonts().seeAll).textColor(appCtrl.appTheme.primary).fontSize(FontSizes.s18).gestures(
               onTap: () => Get.toNamed(
                 routeName.product,
-                arguments: {'categoryId': categoryId},
+                arguments: {'category': category},
               ),
             ),
       ],

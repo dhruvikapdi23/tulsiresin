@@ -10,8 +10,8 @@ class Images {
   String? src;
   List<int>? variantIds;
   String? adminGraphqlApiId;
-
-  Images({this.productId, this.id, this.position, this.createdAt, this.updatedAt, this.alt, this.width, this.height, this.src, this.variantIds, this.adminGraphqlApiId});
+  Node? node;
+  Images({this.productId, this.id, this.position, this.createdAt, this.updatedAt, this.alt, this.width, this.height, this.src, this.variantIds, this.adminGraphqlApiId,this.node});
 
   Images.fromJson(Map<String, dynamic> json) {
     productId = json['product_id'];
@@ -25,6 +25,9 @@ class Images {
     src = json['src'];
     variantIds = json['variant_ids'] != null ? json['variant_ids']!.cast<int>() : null;
     adminGraphqlApiId = json['admin_graphql_api_id'];
+    if (node != null) {
+      json['node'] = node!.toJson();
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -40,6 +43,27 @@ class Images {
     data['src'] = src;
     data['variant_ids'] = variantIds;
     data['admin_graphql_api_id'] = adminGraphqlApiId;
+    node =
+    data['node'] != null ?  Node.fromJson(data['node']) : null;
+    return data;
+  }
+}
+
+class Node {
+  String? typename;
+  String? src;
+
+  Node({this.typename, this.src});
+
+  Node.fromJson(Map<String, dynamic> json) {
+    typename = json['typename'];
+    src = json['src'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['typename'] = typename;
+    data['src'] = src;
     return data;
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' hide Image;
 
 import '../config.dart';
+import '../models/index.dart';
 
 class ImageGalery extends StatelessWidget {
   final List<Images>? images;

@@ -2,7 +2,6 @@ export '../../models/banner_model.dart';
 export '../../models/recent_view_model.dart';
 export '../../models/images.dart';
 export '../../models/option.dart';
-export '../../models/variants.dart';
 export '../../models/recent_search_model.dart';
 export '../../models/price_set.dart';
 export '../../models/shop_money_model.dart';

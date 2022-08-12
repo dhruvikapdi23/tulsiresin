@@ -1,4 +1,5 @@
 import '../config.dart';
+import 'index.dart';
 
 class PriceSet {
   ShopMoney? shopMoney;

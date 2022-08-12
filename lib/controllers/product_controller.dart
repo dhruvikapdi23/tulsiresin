@@ -7,6 +7,7 @@ class ProductController extends GetxController with ShopifyMixin {
   final PagingController pagingController = PagingController(firstPageKey: 0);
   bool isBack = false;
   static const _pageSize = 20;
+String categoryName = '';
 
   @override
   void onInit() {
@@ -31,10 +32,10 @@ class ProductController extends GetxController with ShopifyMixin {
   void getData(int pageKey) async {
     try {
       var args = Get.arguments;
-      String categoryId = args['categoryId'];
-
+      var category = args['category'];
+      categoryName = category['name'];
       List<ProductModel> data = await shopifyService.fetchProductsByCategory(
-            categoryId: categoryId,
+            categoryId: category['category'],
             page: (pageKey / _pageSize).round() + 1,
             limit: _pageSize,
           ) ??
@@ -52,6 +53,7 @@ class ProductController extends GetxController with ShopifyMixin {
         final nextPageKey = pageKey + data.length;
         pagingController.appendPage(data, nextPageKey);
       }
+      print('::: ${pagingController.itemList![0]}');
     } on Exception catch (e) {
       pagingController.error = e;
     }

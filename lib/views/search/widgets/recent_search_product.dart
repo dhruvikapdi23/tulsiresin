@@ -6,12 +6,16 @@ import '../../../config.dart';
 class RecentSearchProduct extends StatelessWidget {
   final ProductModel? productViewModel;
   final GestureTapCallback? onTap;
-  const RecentSearchProduct({Key? key, this.productViewModel, this.onTap}) : super(key: key);
+
+  const RecentSearchProduct({Key? key, this.productViewModel, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print(productViewModel!.image);
     return InkWell(
-      onTap: () => Get.toNamed(routeName.productDetail, arguments: productViewModel),
+      onTap: () =>
+          Get.toNamed(routeName.productDetail, arguments: productViewModel),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,14 +23,23 @@ class RecentSearchProduct extends StatelessWidget {
             alignment: Alignment.topRight,
             children: [
               CachedNetworkImage(
-                imageUrl: productViewModel!.image != null ? productViewModel!.image!.src.toString() : '',
+                imageUrl: productViewModel!.image != null
+                    ? productViewModel!.image!.node!.src.toString()
+                    : productViewModel!.images!.isNotEmpty
+                        ? productViewModel!.images![0].src.toString()
+                        : "",
                 imageBuilder: (context, imageProvider) => Image.network(
-                  productViewModel!.image != null ? productViewModel!.image!.src.toString() : '',
+                  productViewModel!.image != null
+                      ? productViewModel!.image!.node!.src.toString()
+                      : productViewModel!.images!.isNotEmpty
+                          ? productViewModel!.images![0].src.toString()
+                          : "",
                   height: Sizes.s180,
                   width: MediaQuery.of(context).size.width / 2.2,
                   fit: BoxFit.cover,
                 ),
-                placeholder: (context, url) => const CircularProgressIndicator(strokeWidth: 1),
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(strokeWidth: 1),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               /* productViewModel!.isFav!
@@ -39,10 +52,18 @@ class RecentSearchProduct extends StatelessWidget {
             ],
           ),
           Space(0, Sizes.s8),
-          Text(productViewModel!.title.toString()).textColor(appCtrl.appTheme.black.withOpacity(.8)).fontSize(FontSizes.s14),
+          Text(productViewModel!.title.toString(),overflow: TextOverflow.clip,)
+              .textColor(appCtrl.appTheme.black.withOpacity(.8))
+              .fontSize(FontSizes.s14),
           Space(0, Sizes.s10),
           Row(
-            children: [Text('\$ ${productViewModel!.variants![0].price.toString()}').textColor(appCtrl.appTheme.black).fontSize(FontSizes.s14), Space(10, 0), const Icon(Icons.add_shopping_cart, size: Sizes.s18)],
+            children: [
+              Text('\$ ${productViewModel!.variants![0].node!.priceV2!.amount.toString()}')
+                  .textColor(appCtrl.appTheme.black)
+                  .fontSize(FontSizes.s14),
+              Space(10, 0),
+              const Icon(Icons.add_shopping_cart, size: Sizes.s18)
+            ],
           ),
           Space(0, Sizes.s10),
           /* Text(productViewModel!.isInStock == true

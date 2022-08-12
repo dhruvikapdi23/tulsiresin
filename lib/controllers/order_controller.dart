@@ -2,6 +2,10 @@ import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/models/order_detail_model.dart';
 import 'package:tulsiresin/routes/screen_list.dart';
 
+import '../models/index.dart';
+
+
+
 class OrderDetailController extends GetxController {
   var orderDetail = OrderDetailModel(
       lineItems: [
