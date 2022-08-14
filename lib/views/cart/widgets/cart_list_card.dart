@@ -28,10 +28,10 @@ class CartListCard extends StatelessWidget {
                 SvgPicture.asset(svgAssets.delete),
                 Space(10, 0),
                 CachedNetworkImage(
-                  imageUrl: product!.image!.src.toString(),
+                  imageUrl: product!.images![0].src.toString(),
 
                   imageBuilder: (context, imageProvider) => Image.network(
-                    product!.image!.src.toString(),
+                    product!.images![0].src.toString(),
                     height: Sizes.s100,
                     width: Sizes.s80,
                     fit: BoxFit.cover,
@@ -56,7 +56,7 @@ class CartListCard extends StatelessWidget {
                         overflow: TextOverflow.clip,
                       ).fontSize(FontSizes.s14).textColor(appCtrl.appTheme.txt),
                       Space(0, 5),
-                      Text('\$${product!.variants![0].price.toString()}')
+                      Text('\$${product!.variants![0].node!.priceV2!.amount.toString()}')
                           .fontSize(FontSizes.s14)
                           .textColor(appCtrl.appTheme.black)
                           .fontWeight(FontWeight.w700),

@@ -2,6 +2,8 @@ import 'dart:async';
 
 // ignore: depend_on_referenced_packages
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:tulsiresin/models/user.dart';
 
 import '../config.dart';
 
@@ -9,6 +11,8 @@ class SplashController extends GetxController {
   bool positionAnimation = false;
   bool showLoading = false;
   double appTitleOpacity = 0;
+  User? user;
+  final storage = GetStorage();
 
   @override
   void onInit() {
@@ -63,9 +67,10 @@ class SplashController extends GetxController {
   bool isLogin() {
     String? authToken = getStorage(Session.authToken);
     bool? stayLogin = getStorage(Session.stayLogin) ?? false;
+    var user = storage.read(Session.userInfo) ?? "";
     var id = getStorage(Session.id);
 
-    if (authToken != null && id != null && stayLogin == true) {
+    if (authToken != null && user != null && user != "") {
       return true;
     } else {
       return false;
@@ -75,7 +80,7 @@ class SplashController extends GetxController {
   void checkLogin() async {
     bool isOnboarded = getStorage(Session.isOnboarded) ?? false;
     if (isLogin()) {
-      Get.offAndToNamed(routeName.login);
+      Get.offAndToNamed(routeName.dashboard);
     } else if (isOnboarded == false) {
       Get.offAndToNamed(routeName.login);
     } else {

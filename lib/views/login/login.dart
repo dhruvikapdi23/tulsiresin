@@ -65,11 +65,11 @@ class _LoginScreenState extends State<LoginScreen>with TickerProviderStateMixin 
                     title: "LOG IN",
                     radius: 0,
                     onTap: () {
-                     /* if (loginCtrl.formKey.currentState!.validate()) {
-                        loginCtrl.checkLogin();
-                      }*/
                       print('tap');
-                      loginCtrl.checkLogin();
+                      if (loginCtrl.formKey.currentState!.validate()) {
+                        loginCtrl.checkLogin();
+                      }
+
                     },
                   ),
                   Space(0, 50),

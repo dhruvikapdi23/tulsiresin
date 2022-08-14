@@ -16,6 +16,7 @@ class Session {
   static String get serverConfig => 'serverConfig';
   static String get updateConfig => 'updateConfig';
   static String get isOnboarded => 'isOnboarded';
+  static String get userInfo => 'userInfo';
   //for language change
   static String get languageCode => 'languageCode';
   static String get countryCode => 'countryCode';

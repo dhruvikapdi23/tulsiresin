@@ -11584,6 +11584,7 @@ var productJson = [
     }
   }
 ];
+/*
 
 List<ProductModel> get geRecentProducts => productJson.getRange(0, 4).map((e) => ProductModel.fromJson(e)).toList();
 
@@ -11593,4 +11594,4 @@ List<ProductModel> get geCartProducts => productJson.getRange(0, 2).map((e) => P
 
 List<ProductModel> get geRecentProducts1 => productJson.getRange(5, 9).map((e) => ProductModel.fromJson(e)).toList();
 
-List<ProductModel> get getProducts => productJson.map((e) => ProductModel.fromJson(e)).toList();
+List<ProductModel> get getProducts => productJson.map((e) => ProductModel.fromJson(e)).toList();*/

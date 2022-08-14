@@ -40,7 +40,7 @@ class Cart extends StatelessWidget {
                       product: e.value,
                       quantity: "1",
                       optionLength: e.value.options!.length,
-                      minusTap: (){
+                      /*minusTap: (){
                         int qunatity = e.value.quantity!;
                         if(qunatity == 1){
                           qunatity =1;
@@ -55,7 +55,7 @@ class Cart extends StatelessWidget {
                         qunatity++;
                         cartCtrl.update();
                         e.value.quantity = qunatity;
-                      },
+                      },*/
                     ).gestures(onTap:()=> Get.toNamed(routeName.productDetail,arguments: e.value),);
                   }).toList(),
                   const PriceLayout(),
@@ -99,17 +99,17 @@ class Cart extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    ...geRecentProducts.asMap().entries.map((e) {
+                   /* ...geRecentProducts.asMap().entries.map((e) {
                       return RecentViewListCard(
                         data: e.value,
                         index: e.key,
                         onTap: ()=> Get.toNamed(routeName.productDetail,arguments: e.value),
                         heartIconTap: (){
-                          /*e.value.isFav = !e.value.isFav!;
-                          cartCtrl.update();*/
+                          *//*e.value.isFav = !e.value.isFav!;
+                          cartCtrl.update();*//*
                         },
                       );
-                    })
+                    })*/
                   ],
                 ),
               ),

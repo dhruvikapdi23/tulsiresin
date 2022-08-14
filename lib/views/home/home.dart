@@ -16,6 +16,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List collections = config['home']['collections'] ?? [];
+
     return GetBuilder<HomeController>(builder: (_) {
       return Scaffold(
         backgroundColor: appCtrl.appTheme.surface,
@@ -75,7 +76,8 @@ class Home extends StatelessWidget {
                                 } else if (snapshot.hasData) {
                                   // Extracting data from snapshot object
                                   final data = snapshot.data as List<ProductModel>;
-                                  return SingleChildScrollView(
+                                  print('data : $data');
+                                  return   SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Row(children: [
                                       ...data.asMap().entries.map((e) {

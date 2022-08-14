@@ -10,8 +10,8 @@ class HomeController extends GetxController with ShopifyMixin {
   @override
   void onReady() {
     // TODO: implement onReady
-    recentView = geRecentProducts;
-    womenCollection = geRecentProducts;
+   // recentView = geRecentProducts;
+    //womenCollection = geRecentProducts;
     update();
     super.onReady();
   }

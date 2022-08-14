@@ -88,8 +88,7 @@ class Variants {
     oldInventoryQuantity = json['old_inventory_quantity'];
     requiresShipping = json['requires_shipping'];
     adminGraphqlApiId = json['admin_graphql_api_id'];
-    node =
-    json['node'] != null ?  Node.fromJson(json['node']) : null;
+    node = json.containsKey('node') ?json['node'] != null ?  Node.fromJson(json['node']) : null : null;
   }
 
   Map<String, dynamic> toJson() {

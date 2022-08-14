@@ -36,14 +36,14 @@ class ReviewLayout extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...geReviewProducts.asMap().entries.map((e) {
+               /* ...geReviewProducts.asMap().entries.map((e) {
 
                   return CartListCard(
                     product: e.value,
                     quantity: "0",
                     optionLength: e.value.options!.length,
                   );
-                }).toList(),
+                }).toList(),*/
                  const PriceLayout(isBgColor: false,),
                 Space(0, 20),
               ],

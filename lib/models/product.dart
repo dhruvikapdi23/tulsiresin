@@ -7,7 +7,7 @@ class ProductModel {
   String? id;
   int? quantity;
   String? title;
-  String? bodyHtml;
+  String? description;
   String? vendor;
   String? productType;
   String? createdAt;
@@ -24,13 +24,13 @@ class ProductModel {
   List<Images>? images;
   Images? image;
 
-  ProductModel({this.id, this.title, this.quantity, this.bodyHtml, this.vendor, this.productType, this.createdAt, this.handle, this.updatedAt, this.publishedAt, this.templateSuffix, this.status, this.publishedScope, this.tags, this.adminGraphqlApiId, this.variants, this.options, this.images, this.image});
+  ProductModel({this.id, this.title, this.quantity, this.description, this.vendor, this.productType, this.createdAt, this.handle, this.updatedAt, this.publishedAt, this.templateSuffix, this.status, this.publishedScope, this.tags, this.adminGraphqlApiId, this.variants, this.options, this.images, this.image});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     quantity = json['quantity'];
-    bodyHtml = json['body_html'];
+    description = json['description'];
     vendor = json['vendor'];
     productType = json['product_type'];
     createdAt = json['created_at'];
@@ -70,7 +70,7 @@ class ProductModel {
     data['id'] = id;
     data['quantity'] = quantity;
     data['title'] = title;
-    data['body_html'] = bodyHtml;
+    data['description'] = description;
     data['vendor'] = vendor;
     data['product_type'] = productType;
     data['created_at'] = createdAt;

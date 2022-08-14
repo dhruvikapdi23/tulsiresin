@@ -256,7 +256,7 @@ class _ProductDetailState extends State<ProductDetail> {
                             .textColor(appCtrl.appTheme.black),
                         // contents
                         children: [
-                          HtmlWidget( productCtrl.product!.bodyHtml ?? "",)
+                          HtmlWidget( productCtrl.product!.description ?? "",),
 
                          /* Text(productCtrl.product!.bodyHtml ?? "")
                               .overFlow(TextOverflow.clip)

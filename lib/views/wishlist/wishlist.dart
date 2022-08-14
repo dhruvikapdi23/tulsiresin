@@ -25,36 +25,21 @@ class WishList extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             //productList.isNotEmpty
-            child: getProducts.isNotEmpty
+            child: wishListCtrl.cartList.isNotEmpty
                 ? Column(
                     children: [
                       const Text('2 Items')
                           .fontSize(FontSizes.s14)
                           .textColor(appCtrl.appTheme.grayPrimary),
                       const Divider(),
-                      ...getProducts.asMap().entries.map((e) {
+                      ...wishListCtrl.cartList.asMap().entries.map((e) {
                         return InkWell(
                           onTap: ()=> Get.toNamed(routeName.productDetail,arguments: e.value),
                           child: CartListCard(
                             product: e.value,
                             quantity: "1",
                             optionLength: e.value.options!.length,
-                            minusTap: (){
-                              int qunatity = e.value.quantity!;
-                              if(qunatity == 1){
-                                qunatity =1;
-                              }else {
-                                qunatity--;
-                              }
-                              wishListCtrl.update();
-                              e.value.quantity = qunatity;
-                            },
-                            plusTap: (){
-                              int qunatity = e.value.quantity!;
-                              qunatity++;
-                              wishListCtrl.update();
-                              e.value.quantity = qunatity;
-                            },
+
 
                           )
                         );
@@ -79,6 +64,7 @@ mainAxisAlignment: MainAxisAlignment.start,
               ],
             ).width(MediaQuery.of(context).size.width).height(MediaQuery.of(context).size.height).marginOnly(top: MediaQuery.of(context).size.height /10),
           ),
+          //body: Container(),
         );
       }
     );

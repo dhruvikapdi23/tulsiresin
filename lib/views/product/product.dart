@@ -41,7 +41,7 @@ class Product extends StatelessWidget {
         backgroundColor: appCtrl.appTheme.primary,
         body: Container(
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: Insets.i15),
+          padding: const EdgeInsets.symmetric(vertical: Insets.i15,horizontal: Insets.i12),
           decoration: BoxDecoration(color: appCtrl.appTheme.white, borderRadius: const BorderRadius.only(topRight: Radius.circular(AppRadius.r20), topLeft: Radius.circular(AppRadius.r20))),
           child: RefreshIndicator(
             onRefresh: productCtrl.refreshData,

@@ -20,7 +20,7 @@ class ProductNamePrice extends StatelessWidget {
         Row(
           children: [
 
-            Text("\$${product!.variants![variantIndex!].price.toString()}")
+            Text("\$${product!.variants![0].node!.priceV2!.amount.toString()}")
                 .fontSize(FontSizes.s18)
                 .fontWeight(FontWeight.w600)
                 .textColor(appCtrl.appTheme.txt),

@@ -51,7 +51,7 @@ print('var : ${data!.variants![0].node!}');
           Space(0, Sizes.s8),
           Text(data!.title.toString())
               .textColor(appCtrl.appTheme.black.withOpacity(.8))
-              .fontSize(FontSizes.s14),
+              .fontSize(FontSizes.s14).width(Sizes.s140),
           Space(0, Sizes.s10),
           Row(
             children: [

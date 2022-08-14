@@ -1,6 +1,8 @@
+import 'package:tulsiresin/app_services/config.dart';
 import 'package:tulsiresin/common/array/product.dart';
 import 'package:tulsiresin/config.dart';
 import 'package:tulsiresin/controllers/product_detail_controller.dart';
+import 'package:tulsiresin/models/product.dart';
 import 'package:tulsiresin/views/home/widgets/recent_view_list.dart';
 
 class YouMayAlsoLike extends StatelessWidget {
@@ -8,6 +10,7 @@ class YouMayAlsoLike extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List collections = config['home']['collections'] ?? [];
     return GetBuilder<ProductDetailController>(
       builder: (productDetail) {
         return Column(
@@ -23,17 +26,43 @@ class YouMayAlsoLike extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  ...geRecentProducts.asMap().entries.map((e) {
-                    return RecentViewListCard(
-                      data: e.value,
-                      index: e.key,
+                  FutureBuilder(
+                    future: productDetail.getProductDataByCollectionId(collections[0]['category']),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        // If we got an error
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text(
+                              '${snapshot.error} occurred',
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                          );
 
-                      heartIconTap: (){
-                        /*e.value.isFav = !e.value.isFav!;
-                            homeCtrl.update();*/
-                      },
-                    );
-                  })
+                          // if we got our data
+                        } else if (snapshot.hasData) {
+                          // Extracting data from snapshot object
+                          final data = snapshot.data as List<ProductModel>;
+                          print('data : $data');
+                          return   SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(children: [
+                              ...data.asMap().entries.map((e) {
+
+                                return RecentViewListCard(
+                                  data: e.value,
+                                  index: e.key,
+                                  onTap: () => Get.toNamed(routeName.productDetail, arguments: e.value),
+                                  heartIconTap: () {},
+                                );
+                              }).toList(),
+                            ]),
+                          );
+                        }
+                      }
+                      return const CircularProgressIndicator();
+                    },
+                  ),
                 ],
               ).marginOnly(left: Insets.i20),
             ),

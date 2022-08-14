@@ -9,7 +9,7 @@ class DashboardController extends GetxController {
   int selectedIndex = 0;
 
   //list of bottomnavigator page
-  List<Widget> widgetOptions = <Widget>[ Home(),  Category(), Search(), Cart(), const User()];
+  List<Widget> widgetOptions = <Widget>[ Home(),  Category(), Search(), Cart(),  User()];
 
   bottomNavigationChange(val){
     selectedIndex = val;

@@ -2,8 +2,8 @@ Map<String, dynamic> config = {
   "home": {
     "collections": [
       {"name": "New Arrival", "category": "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3MTY4MDA0NTIzNg=="},
-      {"name": "Top Sale This Week", "category": "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3MTY4MjQ3MDA2OA=="},
-      {"name": "Dry Flowers", "category": "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3MTYzNjE2ODg4NA=="}
+     /* {"name": "Top Sale This Week", "category": "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3MTY4MjQ3MDA2OA=="},*/
+      /*{"name": "Dry Flowers", "category": "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3MTYzNjE2ODg4NA=="}*/
     ],
     "banners": [
       {
