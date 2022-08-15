@@ -267,12 +267,14 @@ int count=0;
     String? accessToken = "";
     try {
       printLog('::::request login');
-
+       User? userInfo;
        accessToken = await createAccessToken(username: username, password: password);
-      var userInfo = await getUserInfo(accessToken);
-        writeStorage(Session.authToken,accessToken);
-      printLog('login $userInfo');
-      printLog('login $accessToken');
+       if(accessToken != "") {
+          userInfo = await getUserInfo(accessToken);
+         writeStorage(Session.authToken, accessToken);
+         printLog('login $userInfo');
+         printLog('login $accessToken');
+       }
 
       return userInfo;
     } catch (e) {
@@ -345,9 +347,9 @@ int count=0;
         throw Exception(result.exception.toString());
       }
       var json = result.data!['customerAccessTokenCreate']['customerAccessToken'];
-      printLog("json['accessToken'] ${json['accessToken']}");
+     // printLog("json['accessToken'] ${json}");
 
-      return json['accessToken'];
+      return json != null ?json['accessToken']:"";
     } catch (e) {
       printLog('::::createAccessToken shopify error');
       printLog(e.toString());
