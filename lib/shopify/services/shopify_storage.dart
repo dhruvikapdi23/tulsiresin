@@ -1,9 +1,3 @@
-import 'dart:developer';
-
-void printLog(val) {
-  log(val);
-}
-
 class ShopifyStorage {
   String? categoryId;
   String? cursor = '';
@@ -13,9 +7,6 @@ class ShopifyStorage {
     cursor = cursorValue;
     hasNextPage = nextPage;
     categoryId = cateId;
-
-    //printLog('setCurrentCursor with hasNextPage $nextPage');
-    //printLog('setCurrentCursor with cursor $cursorValue');
   }
 
   Map<String, dynamic> toJson() {

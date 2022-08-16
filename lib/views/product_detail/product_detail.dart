@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:tulsiresin/config.dart';
+import 'package:tulsiresin/controllers/cart_controller.dart';
 import 'package:tulsiresin/controllers/dashboard_controller.dart';
 import 'package:tulsiresin/controllers/product_detail_controller.dart';
 import 'package:tulsiresin/views/product_detail/widgets/common_detail.dart';
@@ -20,6 +21,7 @@ class ProductDetail extends StatefulWidget {
 }
 
 class _ProductDetailState extends State<ProductDetail> {
+  final cartCtrl = Get.isRegistered<CartController>() ? Get.find<CartController>() : Get.put(CartController());
   final productCtrl = Get.put(ProductDetailController());
   ScrollController? _scrollController;
   bool lastStatus = true;
@@ -33,8 +35,7 @@ class _ProductDetailState extends State<ProductDetail> {
   }
 
   bool get _isShrink {
-    return _scrollController!.hasClients &&
-        _scrollController!.offset > (Sizes.s380 - kToolbarHeight);
+    return _scrollController!.hasClients && _scrollController!.offset > (Sizes.s380 - kToolbarHeight);
   }
 
   @override
@@ -57,22 +58,8 @@ class _ProductDetailState extends State<ProductDetail> {
       return Scaffold(
         body: NestedScrollView(
             controller: _scrollController,
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                    expandedHeight: Sizes.s400,
-                    backgroundColor: appCtrl.appTheme.white,
-                    floating: false,
-                    leading: _isShrink
-                        ? const Icon(Icons.arrow_back)
-                            .gestures(onTap: () => Get.back())
-                        : Container(),
-                    pinned: true,
-                    automaticallyImplyLeading: false,
-                    flexibleSpace: FlexibleSpaceBar(
-                        centerTitle: true, background: ImageSlider()))
-              ];
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[SliverAppBar(expandedHeight: Sizes.s400, backgroundColor: appCtrl.appTheme.white, floating: false, leading: _isShrink ? const Icon(Icons.arrow_back).gestures(onTap: () => Get.back()) : Container(), pinned: true, automaticallyImplyLeading: false, flexibleSpace: FlexibleSpaceBar(centerTitle: true, background: ImageSlider()))];
             },
             body: SingleChildScrollView(
               child: Column(
@@ -85,12 +72,8 @@ class _ProductDetailState extends State<ProductDetail> {
                       product: productCtrl.product,
                       variantIndex: productCtrl.variantIndex,
                     ),
-                  if (productCtrl.product != null && productCtrl.product!.variants!.length >1)
-                    VariantsLayout(
-                        options: productCtrl.product!.options,
-                        optionValue: productCtrl.optionValue),
-                  if (productCtrl.product != null && productCtrl.product!.variants!.length >1)
-                  Space(0, 20),
+                  if (productCtrl.product != null && productCtrl.product!.variants!.length > 1) VariantsLayout(options: productCtrl.product!.options, optionValue: productCtrl.optionValue),
+                  if (productCtrl.product != null && productCtrl.product!.variants!.length > 1) Space(0, 20),
                   Row(
                     children: [
                       Expanded(
@@ -118,8 +101,7 @@ class _ProductDetailState extends State<ProductDetail> {
                             ),
                           ),
                           onPressed: () {
-                            int qunatity =
-                                int.parse(productCtrl.txtQuantity.text);
+                            int qunatity = int.parse(productCtrl.txtQuantity.text);
                             if (qunatity == 1) {
                               qunatity = 1;
                             } else {
@@ -168,9 +150,7 @@ class _ProductDetailState extends State<ProductDetail> {
                             signed: true,
                             decimal: false,
                           ),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -193,8 +173,7 @@ class _ProductDetailState extends State<ProductDetail> {
                             ),
                           ),
                           onPressed: () {
-                            int qunatity =
-                                int.parse(productCtrl.txtQuantity.text);
+                            int qunatity = int.parse(productCtrl.txtQuantity.text);
                             qunatity++;
                             productCtrl.update();
                             productCtrl.txtQuantity.text = qunatity.toString();
@@ -231,34 +210,44 @@ class _ProductDetailState extends State<ProductDetail> {
                             width: MediaQuery.of(context).size.width / 1.4,
                             radius: 0,
                             onTap: () {
-                              Get.toNamed(routeName.checkOut);
+                              var msg = cartCtrl.addProductToCart(
+                                context: context,
+                                product: productCtrl.product,
+                                quantity: int.parse(productCtrl.txtQuantity.text),
+                                variation: productCtrl.product?.variants?[productCtrl.variantIndex],
+                              );
+
+                              if (msg.isNotEmpty) {
+                                snackBar(msg);
+                              } else {
+                                snackBar("${productCtrl.product?.title} have been added to your cart", type: 'success');
+                              }
+                              //Get.toNamed(routeName.checkOut);
                             },
                             padding: const EdgeInsets.all(Insets.i15),
                           ),
                         );
                       }),
                     ],
-                  ).marginSymmetric(
-                      horizontal: Insets.i15, vertical: Insets.i20),
+                  ).marginSymmetric(horizontal: Insets.i15, vertical: Insets.i20),
                   if (productCtrl.product != null)
                     Theme(
-                      data: ThemeData.light()
-                          .copyWith(dividerColor: Colors.transparent),
+                      data: ThemeData.light().copyWith(dividerColor: Colors.transparent),
                       child: ExpansionTile(
                         controlAffinity: ListTileControlAffinity.trailing,
-                        childrenPadding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 20),
+                        childrenPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                         expandedCrossAxisAlignment: CrossAxisAlignment.end,
                         collapsedIconColor: appCtrl.appTheme.black,
                         iconColor: appCtrl.appTheme.black,
                         maintainState: true,
-                        title: Text(CommonFonts().description)
-                            .textColor(appCtrl.appTheme.black),
+                        title: Text(CommonFonts().description).textColor(appCtrl.appTheme.black),
                         // contents
                         children: [
-                          HtmlWidget( productCtrl.product!.description ?? "",),
+                          HtmlWidget(
+                            productCtrl.product!.description ?? "",
+                          ),
 
-                         /* Text(productCtrl.product!.bodyHtml ?? "")
+                          /* Text(productCtrl.product!.bodyHtml ?? "")
                               .overFlow(TextOverflow.clip)
                               .letterSpacing(.5),*/
                           // This button is used to remove this item
@@ -276,7 +265,7 @@ class _ProductDetailState extends State<ProductDetail> {
                       title: CommonFonts().category,
                       value: productCtrl.product!.productType!,
                     ),*/
-                /*  if (productCtrl.product != null)
+                  /*  if (productCtrl.product != null)
                     CommonDetail(
                       title: CommonFonts().material,
                       value: productCtrl.product!.handle!,

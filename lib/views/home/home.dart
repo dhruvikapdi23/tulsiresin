@@ -4,6 +4,7 @@ import 'package:tulsiresin/controllers/dashboard_controller.dart';
 import 'package:tulsiresin/controllers/home_controller.dart';
 import 'package:tulsiresin/models/product.dart';
 import 'package:tulsiresin/views/home/widgets/banner_list.dart';
+import 'package:tulsiresin/views/home/widgets/collection_products.dart';
 import 'package:tulsiresin/views/home/widgets/common_title.dart';
 import 'package:tulsiresin/views/home/widgets/recent_view_list.dart';
 
@@ -49,58 +50,8 @@ class Home extends StatelessWidget {
             children: [
               // banner list
               const BannerList(),
-
               ...collections.map((collection) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CommonTitle(title: collection['name'] ?? '', category: collection ?? ''),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          FutureBuilder(
-                            future: homeCtrl.getProductDataByCollectionId(collection['category']),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState == ConnectionState.done) {
-                                // If we got an error
-                                if (snapshot.hasError) {
-                                  return Center(
-                                    child: Text(
-                                      '${snapshot.error} occurred',
-                                      style: const TextStyle(fontSize: 18),
-                                    ),
-                                  );
-
-                                  // if we got our data
-                                } else if (snapshot.hasData) {
-                                  // Extracting data from snapshot object
-                                  final data = snapshot.data as List<ProductModel>;
-                                  print('data : $data');
-                                  return   SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(children: [
-                                      ...data.asMap().entries.map((e) {
-
-                                        return RecentViewListCard(
-                                          data: e.value,
-                                          index: e.key,
-                                          onTap: () => Get.toNamed(routeName.productDetail, arguments: e.value),
-                                          heartIconTap: () {},
-                                        );
-                                      }).toList(),
-                                    ]),
-                                  );
-                                }
-                              }
-                              return const CircularProgressIndicator();
-                            },
-                          ),
-                        ],
-                      ).marginOnly(left: Insets.i20),
-                    ),
-                  ],
-                );
+                return CollectionProducts(collection: collection);
               }).toList(),
             ],
           ).marginOnly(bottom: Insets.i50),

@@ -1,6 +1,8 @@
+import 'package:tulsiresin/models/index.dart';
+
 class Variants {
   int? productId;
-  int? id;
+  String? id;
   String? title;
   String? price;
   String? sku;
@@ -28,6 +30,11 @@ class Variants {
   bool? requiresShipping;
   String? adminGraphqlApiId;
   Node? node;
+  //Extra
+  String? regularPrice;
+  String? salePrice;
+  bool? onSale;
+  String? imageFeature;
 
   Variants(
       {this.productId,
@@ -57,18 +64,28 @@ class Variants {
       this.inventoryQuantity,
       this.oldInventoryQuantity,
       this.requiresShipping,
-      this.adminGraphqlApiId,this.node});
+      this.adminGraphqlApiId,
+      this.node,
+      //Extra
+      this.regularPrice,
+      this.salePrice,
+      this.onSale,
+      this.imageFeature});
 
   Variants.fromJson(Map<String, dynamic> json) {
+    var priceV2 = json['priceV2'];
+    var compareAtPriceV2 = json['compareAtPriceV2'];
+    var compareAtPrice = compareAtPriceV2 != null ? compareAtPriceV2['amount'] : null;
+
     productId = json['product_id'];
     id = json['id'];
     title = json['title'];
-    price = json['price'];
+    //price = json['price'];
     sku = json['sku'];
     position = json['position'];
     inventoryPolicy = json['inventory_policy'];
-    inStock = json['inStock'];
-    stockQuantity = json['stockQuantity'];
+    //inStock = json['inStock'];
+    //stockQuantity = json['stockQuantity'];
     compareAtPrice = json['compare_at_price'];
     fulfillmentService = json['fulfillment_service'];
     inventoryManagement = json['inventory_management'];
@@ -88,7 +105,40 @@ class Variants {
     oldInventoryQuantity = json['old_inventory_quantity'];
     requiresShipping = json['requires_shipping'];
     adminGraphqlApiId = json['admin_graphql_api_id'];
-    node = json.containsKey('node') ?json['node'] != null ?  Node.fromJson(json['node']) : null : null;
+    node = json.containsKey('node')
+        ? json['node'] != null
+            ? Node.fromJson(json['node'])
+            : null
+        : null;
+
+    //Extra
+    stockQuantity = json['quantityAvailable'];
+    price = priceV2 != null ? priceV2['amount'] : null;
+    regularPrice = compareAtPrice ?? price;
+    onSale = compareAtPrice != null && compareAtPrice != price;
+    inStock = json['availableForSale'];
+    regularPrice = compareAtPrice ?? price;
+    salePrice = price;
+    imageFeature = json['image']['src'];
+  }
+
+  Variants.fromShopifyJson(Map<String, dynamic> parsedJson) {
+    var priceV2 = parsedJson['priceV2'];
+    var compareAtPriceV2 = parsedJson['compareAtPriceV2'];
+    var compareAtPrice = compareAtPriceV2 != null ? compareAtPriceV2['amount'] : null;
+
+    id = parsedJson['id'];
+    price = priceV2 != null ? priceV2['amount'] : null;
+    regularPrice = compareAtPrice ?? price;
+    onSale = compareAtPrice != null && compareAtPrice != price;
+    inStock = parsedJson['availableForSale'];
+    salePrice = price;
+    stockQuantity = parsedJson['quantityAvailable'];
+    if (stockQuantity == null || stockQuantity! <= 0) {
+      stockQuantity = 0;
+      inStock = false;
+    }
+    imageFeature = parsedJson['image']['src'];
   }
 
   Map<String, dynamic> toJson() {
@@ -149,6 +199,7 @@ class PriceV2 {
     return data;
   }
 }
+
 class PriceModel {
   String? sTypename;
   Node? node;
@@ -181,16 +232,7 @@ class Node {
   PriceV2? priceV2;
   Null? compareAtPriceV2;
 
-  Node(
-      {this.sTypename,
-        this.id,
-        this.title,
-        this.availableForSale,
-        this.quantityAvailable,
-        this.selectedOptions,
-        this.image,
-        this.priceV2,
-        this.compareAtPriceV2});
+  Node({this.sTypename, this.id, this.title, this.availableForSale, this.quantityAvailable, this.selectedOptions, this.image, this.priceV2, this.compareAtPriceV2});
 
   Node.fromJson(Map<String, dynamic> json) {
     sTypename = json['__typename'];
@@ -205,8 +247,7 @@ class Node {
       });
     }
     image = json['image'] != null ? Image.fromJson(json['image']) : null;
-    priceV2 =
-    json['priceV2'] != null ? PriceV2.fromJson(json['priceV2']) : null;
+    priceV2 = json['priceV2'] != null ? PriceV2.fromJson(json['priceV2']) : null;
     compareAtPriceV2 = json['compareAtPriceV2'];
   }
 
@@ -218,8 +259,7 @@ class Node {
     data['availableForSale'] = availableForSale;
     data['quantityAvailable'] = quantityAvailable;
     if (selectedOptions != null) {
-      data['selectedOptions'] =
-          selectedOptions!.map((v) => v.toJson()).toList();
+      data['selectedOptions'] = selectedOptions!.map((v) => v.toJson()).toList();
     }
     if (image != null) {
       data['image'] = image!.toJson();

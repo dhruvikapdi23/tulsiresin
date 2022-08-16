@@ -238,6 +238,10 @@ String base64Decoded(credentials) {
   return decoded;
 }
 
+bool isNotBlank(String? s) => s != null && s.trim().isNotEmpty;
+
+bool isBlank(String? s) => s == null || s.trim().isEmpty;
+
 //#region Date
 
 //#endregion

@@ -23,10 +23,52 @@ class ProductModel {
   List<Options>? options;
   List<Images>? images;
   Images? image;
+  //Extra
+  String? categoryId;
+  int? stockQuantity;
+  String? price;
+  String? regularPrice;
+  String? salePrice;
+  bool? onSale;
+  bool? inStock;
 
-  ProductModel({this.id, this.title, this.quantity, this.description, this.vendor, this.productType, this.createdAt, this.handle, this.updatedAt, this.publishedAt, this.templateSuffix, this.status, this.publishedScope, this.tags, this.adminGraphqlApiId, this.variants, this.options, this.images, this.image});
+  ProductModel({
+    this.id,
+    this.title,
+    this.quantity,
+    this.description,
+    this.vendor,
+    this.productType,
+    this.createdAt,
+    this.handle,
+    this.updatedAt,
+    this.publishedAt,
+    this.templateSuffix,
+    this.status,
+    this.publishedScope,
+    this.tags,
+    this.adminGraphqlApiId,
+    this.variants,
+    this.options,
+    this.images,
+    this.image,
+    //Extra
+    this.categoryId,
+    this.stockQuantity,
+    this.price,
+    this.regularPrice,
+    this.salePrice,
+    this.onSale,
+    this.inStock,
+  });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
+    var priceV2 = json['variants']['edges'][0]['node']['priceV2'];
+    var compareAtPriceV2 = json['variants']['edges'][0]['node']['compareAtPriceV2'];
+    var compareAtPrice = compareAtPriceV2 != null ? compareAtPriceV2['amount'] : null;
+    var categories = json['collections'] != null ? json['collections']['edges'] : null;
+    var defaultCategory = (categories?.isNotEmpty ?? false) ? categories[0]['node'] : null;
+
     id = json['id'];
     title = json['title'];
     quantity = json['quantity'];
@@ -42,14 +84,27 @@ class ProductModel {
     publishedScope = json['published_scope'];
     tags = json['tags'];
     adminGraphqlApiId = json['admin_graphql_api_id'];
+
+    //Extra Start
+    categoryId = json['categoryId'] ?? (defaultCategory ?? {})['id'];
+    stockQuantity = json['totalInventory'];
+    price = priceV2 != null ? priceV2['amount'] : null;
+    regularPrice = compareAtPrice ?? price;
+    salePrice = price;
+    onSale = compareAtPrice != null && compareAtPrice != price;
+    inStock = json['availableForSale'];
+    if ((stockQuantity ?? 0) <= 0) {
+      inStock = false;
+      stockQuantity = 0;
+    }
+    //Extra End
+
     if (json['variants']['edges'] != null) {
       variants = <Variants>[];
       json['variants']['edges'].forEach((v) {
-        variants!.add(Variants.fromJson(v));
+        variants!.add(Variants.fromJson(v['node']));
       });
-    }else{
-
-    }
+    } else {}
     if (json['options'] != null) {
       options = <Options>[];
       json['options'].forEach((v) {

@@ -8,16 +8,13 @@ class CartListCard extends StatelessWidget {
   final ProductModel? product;
   final GestureTapCallback? plusTap;
   final GestureTapCallback? minusTap;
-  final String? quantity;
+  final int? quantity;
   final int? optionLength;
 
-  const CartListCard(
-      {Key? key, this.product, this.quantity, this.minusTap, this.plusTap,this.optionLength})
-      : super(key: key);
+  const CartListCard({Key? key, this.product, this.quantity, this.minusTap, this.plusTap, this.optionLength}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         Row(
@@ -29,18 +26,15 @@ class CartListCard extends StatelessWidget {
                 Space(10, 0),
                 CachedNetworkImage(
                   imageUrl: product!.images![0].src.toString(),
-
                   imageBuilder: (context, imageProvider) => Image.network(
                     product!.images![0].src.toString(),
                     height: Sizes.s100,
                     width: Sizes.s80,
                     fit: BoxFit.cover,
                   ),
-                  placeholder: (context, url) =>
-                   CircularProgressIndicator(strokeWidth: 1),
+                  placeholder: (context, url) => CircularProgressIndicator(strokeWidth: 1),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-
               ],
             ),
             Space(15, 0),
@@ -56,31 +50,29 @@ class CartListCard extends StatelessWidget {
                         overflow: TextOverflow.clip,
                       ).fontSize(FontSizes.s14).textColor(appCtrl.appTheme.txt),
                       Space(0, 5),
-                      Text('\$${product!.variants![0].node!.priceV2!.amount.toString()}')
-                          .fontSize(FontSizes.s14)
-                          .textColor(appCtrl.appTheme.black)
-                          .fontWeight(FontWeight.w700),
+                      Text(
+                        '\$${product!.price}',
+                      ).fontSize(FontSizes.s14).textColor(appCtrl.appTheme.black).fontWeight(FontWeight.w700),
                       Space(0, 8),
-                       (optionLength! > 1) ?
-                       Column(
-                         crossAxisAlignment: CrossAxisAlignment.start,
-                         children: [ ...product!.options!.asMap().entries.map((e) {
-                           return Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                             children: [
-                               Text(
-                                 e.value.name.toString(),
-                                 overflow: TextOverflow.clip,
-                               )
-                                   .fontSize(FontSizes.s14)
-                                   .textColor(appCtrl.appTheme.txt),
-                               Text(e.value.values![0].toString())
-                                   .fontSize(FontSizes.s14)
-                                   .textColor(appCtrl.appTheme.txt),
-                             ],
-                           ).marginOnly(bottom: Insets.i8);
-                         }).toList(),],
-                       ):Container()
+                      (optionLength! > 1)
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ...product!.options!.asMap().entries.map((e) {
+                                  return Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        e.value.name.toString(),
+                                        overflow: TextOverflow.clip,
+                                      ).fontSize(FontSizes.s14).textColor(appCtrl.appTheme.txt),
+                                      Text(e.value.values![0].toString()).fontSize(FontSizes.s14).textColor(appCtrl.appTheme.txt),
+                                    ],
+                                  ).marginOnly(bottom: Insets.i8);
+                                }).toList(),
+                              ],
+                            )
+                          : Container()
                     ],
                   ),
                   Container(
@@ -88,8 +80,7 @@ class CartListCard extends StatelessWidget {
                     width: Sizes.s120,
                     alignment: Alignment.center,
                     padding: const EdgeInsets.symmetric(horizontal: Insets.i8),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: appCtrl.appTheme.borderGray)),
+                    decoration: BoxDecoration(border: Border.all(color: appCtrl.appTheme.borderGray)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -100,7 +91,7 @@ class CartListCard extends StatelessWidget {
                             size: Insets.i18,
                           ),
                         ),
-                        Text(quantity!),
+                        Text('${quantity ?? ''}'),
                         InkWell(
                           onTap: plusTap,
                           child: const Icon(

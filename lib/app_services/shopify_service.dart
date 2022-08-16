@@ -62,14 +62,14 @@ class ShopifyService {
         var category = item['node'];
 
         list.add(CategoryModel.fromJson(category));
-        printLog("::: category : $category");
+        //printLog("::: category : $category");
       }
 
       if (result.data?['shop']?['collections']?['pageInfo']?['hasNextPage'] ?? false) {
         var lastCategory = result.data!['shop']['collections']['edges'].last;
         String? cursor = lastCategory['cursor'];
         if (cursor != null) {
-          printLog('::::getCategories shopify by cursor $cursor');
+          //printLog('::::getCategories shopify by cursor $cursor');
           return await getCategoriesByCursor(categories: list, cursor: cursor);
         }
       }
@@ -110,7 +110,7 @@ class ShopifyService {
     }
 
     //printLog('fetchProductsByCategory with shopifyStorage ${shopifyStorage.toJson()}');
-int count=0;
+    int count = 0;
     try {
       var list = <ProductModel>[];
 
@@ -136,14 +136,14 @@ int count=0;
         },
       );
       final result = await client.query(options);
-    printLog("result : $result");
+      //printLog("result : $result");
       if (result.hasException) {
         printLog(result.exception.toString());
       }
 
       var node = result.data?['node'];
 
-     // printLog('fetchProductsByCategory with new node $node');
+      // printLog('fetchProductsByCategory with new node $node');
 
       if (node != null) {
         var productResp = node['products'];
@@ -157,19 +157,18 @@ int count=0;
           var lastItem = edges.last;
           var cursor = lastItem['cursor'];
 
-          printLog('fetchProductsByCategory with new cursor $cursor');
+          //printLog('fetchProductsByCategory with new cursor $cursor');
 
           // set next cursor
           shopifyStorage.setShopifyStorage(cursor, categoryId, hasNextPage);
         }
 
         //printLog(":::: Item Data : ${result.data!['node']['products']['edges']}");
-        printLog("::: dhruvi : ${result.data!['node']['products']['edges']  }");
+        //printLog("::: dhruvi : ${result.data!['node']['products']['edges']}");
         for (var item in result.data!['node']['products']['edges']) {
           var product = item['node'];
           count++;
           product['categoryId'] = categoryId;
-
 
           /// Hide out of stock.
           if (product['availableForSale'] == false) {
@@ -180,7 +179,6 @@ int count=0;
 
           list.add(ProductModel.fromJson(product));
         }
-
       }
 
       return list;
@@ -235,8 +233,6 @@ int count=0;
     return ProductModel.fromJson(result.data!['node']);
   }
 
-
-
   Future<User?> getUserInfo(cookie) async {
     try {
       printLog('::::request getUserInfo');
@@ -268,9 +264,9 @@ int count=0;
     try {
       printLog('::::request login');
 
-       accessToken = await createAccessToken(username: username, password: password);
+      accessToken = await createAccessToken(username: username, password: password);
       var userInfo = await getUserInfo(accessToken);
-        writeStorage(Session.authToken,accessToken);
+      writeStorage(Session.authToken, accessToken);
       printLog('login $userInfo');
       printLog('login $accessToken');
 

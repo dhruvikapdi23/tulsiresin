@@ -6,30 +6,23 @@ import '../../../config.dart';
 class ProductNamePrice extends StatelessWidget {
   final ProductModel? product;
   final int? variantIndex;
-  const ProductNamePrice({Key? key,this.product,this.variantIndex}) : super(key: key);
+  const ProductNamePrice({Key? key, this.product, this.variantIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(product!.title ?? "")
-            .fontSize(FontSizes.s16)
-            .textColor(appCtrl.appTheme.txt),
+        Text(product!.title ?? "").fontSize(FontSizes.s16).textColor(appCtrl.appTheme.txt),
         Space(0, 10),
         Row(
           children: [
-
-            Text("\$${product!.variants![0].node!.priceV2!.amount.toString()}")
-                .fontSize(FontSizes.s18)
-                .fontWeight(FontWeight.w600)
-                .textColor(appCtrl.appTheme.txt),
-
-
+            Text(
+              "\$${product!.price ?? ''}",
+            ).fontSize(FontSizes.s18).fontWeight(FontWeight.w600).textColor(appCtrl.appTheme.txt),
           ],
         ),
         Space(0, 10),
-
         Row(
           children: [
             RatingBar.builder(
