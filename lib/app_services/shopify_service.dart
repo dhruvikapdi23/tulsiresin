@@ -263,14 +263,14 @@ class ShopifyService {
     String? accessToken = "";
     try {
       printLog('::::request login');
-       User? userInfo;
-       accessToken = await createAccessToken(username: username, password: password);
-       if(accessToken != "") {
-          userInfo = await getUserInfo(accessToken);
-         writeStorage(Session.authToken, accessToken);
-         printLog('login $userInfo');
-         printLog('login $accessToken');
-       }
+      User? userInfo;
+      accessToken = await createAccessToken(username: username, password: password);
+      if (accessToken != "") {
+        userInfo = await getUserInfo(accessToken);
+        writeStorage(Session.authToken, accessToken);
+        printLog('login $userInfo');
+        printLog('login $accessToken');
+      }
 
       accessToken = await createAccessToken(username: username, password: password);
       var userInfo = await getUserInfo(accessToken);
@@ -349,9 +349,9 @@ class ShopifyService {
         throw Exception(result.exception.toString());
       }
       var json = result.data!['customerAccessTokenCreate']['customerAccessToken'];
-     // printLog("json['accessToken'] ${json}");
+      // printLog("json['accessToken'] ${json}");
 
-      return json != null ?json['accessToken']:"";
+      return json != null ? json['accessToken'] : "";
     } catch (e) {
       printLog('::::createAccessToken shopify error');
       printLog(e.toString());
