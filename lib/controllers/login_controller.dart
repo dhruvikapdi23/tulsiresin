@@ -25,12 +25,28 @@ class LoginController extends GetxController with ShopifyMixin {
       username: txtEmail.text,
       password: txtPassword.text,
     );
-  printLog("useruser : $user");
-    storage.write(Session.userInfo, user);
-    txtEmail.clear();
-    txtPassword.clear();
+    if (user != null) {
+      printLog("useruser : $user");
+      storage.write(Session.userInfo, user);
+      txtEmail.clear();
+      txtPassword.clear();
 
-    update();
-    Get.toNamed(routeName.dashboard);
+      update();
+      Get.toNamed(routeName.dashboard);
+    }else{
+      Get.snackbar(
+        "Alert",
+        "Invalid Credentials",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: appCtrl.appTheme.primary,
+        borderRadius: 0,
+        margin: const EdgeInsets.all(15),
+        colorText: Colors.white,
+        duration: const Duration(seconds: 2),
+        isDismissible: true,
+        forwardAnimationCurve: Curves.easeOutBack,
+
+      );
+    }
   }
 }
